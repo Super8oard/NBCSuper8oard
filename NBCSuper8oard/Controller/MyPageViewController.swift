@@ -2,35 +2,29 @@
 //  MyPageViewController.swift
 //  NBCSuper8oard
 //
-//  Created by JiHoon K on 1/16/24.
+//  Created by JiHoon K on 1/17/24.
 //
 
 import UIKit
 
 class MyPageViewController: UIViewController {
-    @IBOutlet weak var name: UILabel!
-    
-    
+    @IBOutlet weak var userNameLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Do any additional setup after loading the view.
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
+    */
+
 }
-
-extension MyPageViewController {
-    @IBAction private func tappedReturn() {
-        
-    }
-}
-
-
-
-//@available(iOS 17, *)
-//#Preview(traits: .defaultLayout) {
-//    return MyPageViewController()
-//}
