@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5sz-mQ-d4L">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -158,13 +159,13 @@
         <!--My Page View Controller-->
         <scene sceneID="fY1-mb-5mQ">
             <objects>
-                <viewController id="GiG-MO-Obn" customClass="MyPageViewController" customModule="NBCSuper8oard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageViewController" id="GiG-MO-Obn" customClass="MyPageViewController" customModule="NBCSuper8oard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MIm-T2-tfI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강지훈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9H-ws-F4c">
-                                <rect key="frame" x="121.66666666666669" y="184" width="150" height="42"/>
+                                <rect key="frame" x="121.66666666666669" y="188" width="150" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="fl0-2K-Wzm"/>
                                 </constraints>
@@ -172,31 +173,109 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yZ2-kQ-97r">
+                                <rect key="frame" x="0.0" y="230" width="393" height="588"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myPageCell" textLabel="0wx-Tt-GvP" imageView="I1v-7C-M1O" style="IBUITableViewCellStyleDefault" id="CtE-Wd-Dlq" customClass="MyPageCell" customModule="NBCSuper8oard" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CtE-Wd-Dlq" id="ckh-Ag-A93">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="개인정보" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0wx-Tt-GvP">
+                                                    <rect key="frame" x="65.5" y="0.0" width="267.5" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="I1v-7C-M1O">
+                                                    <rect key="frame" x="13.5" y="4.6666666666666679" width="37" height="34.333333333333336"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageReference key="image" image="person.crop.square.fill" catalog="system" symbolScale="large" renderingMode="original"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleImage" destination="I1v-7C-M1O" id="HBu-cG-6TV"/>
+                                            <outlet property="titleLabel" destination="0wx-Tt-GvP" id="q98-8l-bRe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Eh-4j-NjX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="B9H-ws-F4c" firstAttribute="top" secondItem="9Eh-4j-NjX" secondAttribute="top" constant="125" id="7lT-SF-hbV"/>
+                            <constraint firstItem="9Eh-4j-NjX" firstAttribute="trailing" secondItem="yZ2-kQ-97r" secondAttribute="trailing" id="3D3-nh-FVP"/>
+                            <constraint firstItem="B9H-ws-F4c" firstAttribute="top" secondItem="9Eh-4j-NjX" secondAttribute="top" constant="85" id="7lT-SF-hbV"/>
+                            <constraint firstItem="yZ2-kQ-97r" firstAttribute="leading" secondItem="9Eh-4j-NjX" secondAttribute="leading" id="9et-3B-U1Q"/>
                             <constraint firstItem="B9H-ws-F4c" firstAttribute="centerX" secondItem="MIm-T2-tfI" secondAttribute="centerX" id="FEr-eY-nUS"/>
+                            <constraint firstItem="yZ2-kQ-97r" firstAttribute="top" secondItem="B9H-ws-F4c" secondAttribute="bottom" id="IFx-Gy-x3Y"/>
+                            <constraint firstItem="9Eh-4j-NjX" firstAttribute="bottom" secondItem="yZ2-kQ-97r" secondAttribute="bottom" id="b8x-gE-a3U"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="w9H-T5-lIS"/>
                     <connections>
+                        <outlet property="tableView" destination="yZ2-kQ-97r" id="wAT-S9-lZm"/>
                         <outlet property="userNameLabel" destination="B9H-ws-F4c" id="To2-lX-b99"/>
+                        <segue destination="EXL-RX-pME" kind="show" id="eVY-3Y-xef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hk-6C-4RI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="719"/>
+            <point key="canvasLocation" x="956.48854961832058" y="717.6056338028169"/>
+        </scene>
+        <!--개인정보-->
+        <scene sceneID="BJe-Jp-Fq5">
+            <objects>
+                <viewController storyboardIdentifier="PersonalInformationViewController" id="EXL-RX-pME" customClass="PersonalInformationViewController" customModule="NBCSuper8oard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SRf-hC-caG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ctJ-Yb-r6d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="개인정보" id="m4X-Dr-XXh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y24-w5-4Vt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1993" y="366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="R7b-F8-ENk">
+            <objects>
+                <navigationController storyboardIdentifier="MyPageNavi" automaticallyAdjustsScrollViewInsets="NO" id="5sz-mQ-d4L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aFl-6O-9Ii">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GiG-MO-Obn" kind="relationship" relationship="rootViewController" id="tsV-5M-mAf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Hg-Pp-FAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.770992366412212" y="717.6056338028169"/>
         </scene>
     </scenes>
     <resources>
         <image name="box" width="128" height="128"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.crop.square.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

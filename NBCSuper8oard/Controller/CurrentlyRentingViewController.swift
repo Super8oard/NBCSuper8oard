@@ -26,10 +26,3 @@ extension CurrentlyRentingViewController {
         
     }
 }
-
-
-
-//@available(iOS 17, *)
-//#Preview(traits: .defaultLayout) {
-//    return MyPageViewController()
-//}

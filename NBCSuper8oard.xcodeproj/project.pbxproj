@@ -17,6 +17,8 @@
 		E079C8742B565C90001B35B5 /* CurrentlyRentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */; };
 		E079C8762B568E2B001B35B5 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E079C8752B568E2B001B35B5 /* MyPage.storyboard */; };
 		E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */; };
+		E09CEBE32B5744570028D9B3 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE22B5744570028D9B3 /* MyPageCell.swift */; };
+		E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentlyRentingViewController.swift; sourceTree = "<group>"; };
 		E079C8752B568E2B001B35B5 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		E09CEBE22B5744570028D9B3 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
+		E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 			children = (
 				E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */,
 				E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */,
+				E09CEBE22B5744570028D9B3 /* MyPageCell.swift */,
+				E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */,
 				E079C8752B568E2B001B35B5 /* MyPage.storyboard */,
 			);
 			path = Controller;
@@ -239,8 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09CEBE32B5744570028D9B3 /* MyPageCell.swift in Sources */,
 				E079C8742B565C90001B35B5 /* CurrentlyRentingViewController.swift in Sources */,
 				E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */,
+				E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */,
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
