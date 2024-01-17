@@ -13,6 +13,7 @@
 		144548442B56175000C10D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 144548432B56175000C10D76 /* Assets.xcassets */; };
 		144548472B56175000C10D76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144548452B56175000C10D76 /* LaunchScreen.storyboard */; };
 		1445484F2B56196E00C10D76 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445484E2B56196E00C10D76 /* Model.swift */; };
+		6CDBA0CF2B5651F100AF5E56 /* BoardRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDBA0CE2B5651F100AF5E56 /* BoardRegisterViewController.swift */; };
 		6FA1242834AC17986F70D52B /* Pods_NBCSuper8oard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		144548482B56175000C10D76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1445484E2B56196E00C10D76 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		418F74FA6E3019E50878427C /* Pods-NBCSuper8oard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCSuper8oard.debug.xcconfig"; path = "Target Support Files/Pods-NBCSuper8oard/Pods-NBCSuper8oard.debug.xcconfig"; sourceTree = "<group>"; };
+		6CDBA0CE2B5651F100AF5E56 /* BoardRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRegisterViewController.swift; sourceTree = "<group>"; };
 		915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCSuper8oard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 				1445483A2B56174E00C10D76 /* AppDelegate.swift */,
 				1445483C2B56174E00C10D76 /* SceneDelegate.swift */,
 				1445483E2B56174E00C10D76 /* ViewController.swift */,
+				6CDBA0CE2B5651F100AF5E56 /* BoardRegisterViewController.swift */,
 				144548432B56175000C10D76 /* Assets.xcassets */,
 				144548452B56175000C10D76 /* LaunchScreen.storyboard */,
 				144548482B56175000C10D76 /* Info.plist */,
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDBA0CF2B5651F100AF5E56 /* BoardRegisterViewController.swift in Sources */,
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
@@ -361,6 +365,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NBCSuper8oard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -389,6 +394,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NBCSuper8oard/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
