@@ -220,8 +220,8 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate
     
     @objc func buttonPressed()
     {
+
         board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: NMGLatLng(lat: 37.5670135, lng: 126.9783740), isAvailable: true))
-        
         print("기종 : \(board[0].boardType), 킥보드 번호 : \(board[0].boardNumber), 배터리 : \(board[0].boardBattery)mAh, 가격 : 분 당 \(board[0].boardPrice)원, 위치 : \(board[0].boardLocation), 대여 가능 여부 : \(board[0].isAvailable)")
     }
     
