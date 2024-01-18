@@ -20,28 +20,34 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.backgroundColor = .white
         
         let mapTab = MapViewController()
-        let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon"), tag: 0)
+        let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 0)
         mapTab.tabBarItem = mapTabItem
         
         let registerTab = RegisterViewController()
-        let registerTabItem = UITabBarItem(title: "킥보드 등록", image: UIImage(named: "KickboardIcon"), tag: 1)
+        let registerTabItem = UITabBarItem(title: "킥보드 등록", image: UIImage(named: "BoardIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 1)
         registerTab.tabBarItem = registerTabItem
         
         let myPageTab = MyPageViewController()
-        let myPageTabItem = UITabBarItem(title: "My Page", image: UIImage(named: "MyPageIcon"), tag: 2)
+        let myPageTabItem = UITabBarItem(title: "My Page", image: UIImage(named: "MyPageIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 2)
         myPageTab.tabBarItem = myPageTabItem
         
         self.viewControllers = [mapTab, registerTab, myPageTab]
     }
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//MARK: Resize Image Object
+extension UIImage {
+    public func resized(to target: CGSize) -> UIImage {
+        let ratio = min(
+            target.height / size.height, target.width / size.width
+        )
+        let new = CGSize(
+            width: size.width * ratio, height: size.height * ratio
+        )
+        let renderer = UIGraphicsImageRenderer(size: new)
+        return renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: new))
+        }
     }
-    */
-
 }

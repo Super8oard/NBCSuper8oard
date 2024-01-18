@@ -12,11 +12,13 @@
 		1445483F2B56174E00C10D76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445483E2B56174E00C10D76 /* ViewController.swift */; };
 		144548442B56175000C10D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 144548432B56175000C10D76 /* Assets.xcassets */; };
 		144548472B56175000C10D76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144548452B56175000C10D76 /* LaunchScreen.storyboard */; };
-		1445484F2B56196E00C10D76 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445484E2B56196E00C10D76 /* Model.swift */; };
+		1445484F2B56196E00C10D76 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445484E2B56196E00C10D76 /* User.swift */; };
 		144548542B565ACF00C10D76 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548532B565ACF00C10D76 /* TabBarController.swift */; };
 		144548562B566C6B00C10D76 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548552B566C6B00C10D76 /* MapViewController.swift */; };
 		144548582B566EBB00C10D76 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548572B566EBB00C10D76 /* MyPageViewController.swift */; };
 		1445485A2B56954C00C10D76 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548592B56954C00C10D76 /* RegisterViewController.swift */; };
+		1445485C2B57589000C10D76 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445485B2B57589000C10D76 /* Board.swift */; };
+		144548642B58BC7F00C10D76 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548632B58BC7F00C10D76 /* DetailViewController.swift */; };
 		6FA1242834AC17986F70D52B /* Pods_NBCSuper8oard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,11 +31,13 @@
 		144548432B56175000C10D76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		144548462B56175000C10D76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		144548482B56175000C10D76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1445484E2B56196E00C10D76 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1445484E2B56196E00C10D76 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		144548532B565ACF00C10D76 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		144548552B566C6B00C10D76 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		144548572B566EBB00C10D76 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		144548592B56954C00C10D76 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1445485B2B57589000C10D76 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		144548632B58BC7F00C10D76 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		418F74FA6E3019E50878427C /* Pods-NBCSuper8oard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCSuper8oard.debug.xcconfig"; path = "Target Support Files/Pods-NBCSuper8oard/Pods-NBCSuper8oard.debug.xcconfig"; sourceTree = "<group>"; };
 		915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCSuper8oard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,7 +91,8 @@
 		144548502B56197B00C10D76 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1445484E2B56196E00C10D76 /* Model.swift */,
+				1445484E2B56196E00C10D76 /* User.swift */,
+				1445485B2B57589000C10D76 /* Board.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,9 +100,6 @@
 		144548512B56590500C10D76 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				144548552B566C6B00C10D76 /* MapViewController.swift */,
-				144548572B566EBB00C10D76 /* MyPageViewController.swift */,
-				144548592B56954C00C10D76 /* RegisterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -105,7 +107,11 @@
 		144548522B56590C00C10D76 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				144548552B566C6B00C10D76 /* MapViewController.swift */,
+				144548572B566EBB00C10D76 /* MyPageViewController.swift */,
+				144548592B56954C00C10D76 /* RegisterViewController.swift */,
 				144548532B565ACF00C10D76 /* TabBarController.swift */,
+				144548632B58BC7F00C10D76 /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -241,14 +247,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144548642B58BC7F00C10D76 /* DetailViewController.swift in Sources */,
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
 				144548562B566C6B00C10D76 /* MapViewController.swift in Sources */,
 				144548582B566EBB00C10D76 /* MyPageViewController.swift in Sources */,
 				1445485A2B56954C00C10D76 /* RegisterViewController.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
+				1445485C2B57589000C10D76 /* Board.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
 				144548542B565ACF00C10D76 /* TabBarController.swift in Sources */,
-				1445484F2B56196E00C10D76 /* Model.swift in Sources */,
+				1445484F2B56196E00C10D76 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -375,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
