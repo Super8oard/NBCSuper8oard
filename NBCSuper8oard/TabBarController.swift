@@ -23,7 +23,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 0)
         mapTab.tabBarItem = mapTabItem
         
-        let registerTab = RegisterViewController()
+        let registerTab = BoardRegisterViewController()
         let registerTabItem = UITabBarItem(title: "킥보드 등록", image: UIImage(named: "BoardIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 1)
         registerTab.tabBarItem = registerTabItem
         
