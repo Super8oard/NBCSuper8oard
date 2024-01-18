@@ -97,10 +97,10 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
 extension MapViewController {
     private func placeBoardOnMap(board: Board) -> NMFMarker {
         let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
-            guard let marker = overlay as? NMFMarker else { return true }
+            guard let marker = overlay else { return true }
             var tappedBoard: Board?
             for board in self!.boardList {
-                if marker.tag == board.boardNumber {
+                if marker.position == board.boardLocation {
                     tappedBoard = board
                 } else { return false }
             }
@@ -111,6 +111,7 @@ extension MapViewController {
         let marker = NMFMarker(position: board.boardLocation)
         marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
         marker.touchHandler = markerTapEvent
+        marker.maxZoom = 10
         marker.tag = UInt(board.boardNumber)
         return marker
     }
