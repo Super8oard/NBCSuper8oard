@@ -98,11 +98,6 @@
 			children = (
             
 				BA39BCEB2B56480C00D8EB16 /* SignInUp */,
-
-
-				144548522B56590C00C10D76 /* Controller */,
-				144548512B56590500C10D76 /* View */,
-
 				E079C8722B565C73001B35B5 /* View */,
 				E079C8712B565C6B001B35B5 /* Controller */,
 				144548502B56197B00C10D76 /* Model */,
@@ -171,7 +166,7 @@
 				BAAC01012B57E26C00DDC9B2 /* UserStore.swift */,
 			);
 			path = SignInUp;
-
+		};
 		E079C8712B565C6B001B35B5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
