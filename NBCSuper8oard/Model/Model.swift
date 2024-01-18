@@ -23,6 +23,7 @@ struct Board {
     var boardType: String
     var boardNumber: Int
     var boardBattery: Int
-    var boardPrice: Int
+    var boardCost: Int
     var boardLocation: NMGLatLng
+    var isAvilable: Bool
 }

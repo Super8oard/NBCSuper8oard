@@ -7,9 +7,32 @@
 
 import UIKit
 import NMapsMap
+import CoreLocation
 
-class BoardRegisterViewController: UIViewController, UITextFieldDelegate {
+
+
+class BoardRegisterViewController: UIViewController, UITextFieldDelegate
+{
+    var board: [Board] = []
     
+    var boardType: String = ""
+    var boardNumber: Int = 0
+    var boardBattery: Int = 0
+    var boardCost: Int = 0
+    var boardLocation: NMGLatLng = NMGLatLng(lat: 37.5670135, lng: 126.9783740)
+    
+    let pickerList: [String] = ["A", "B", "C"]
+    
+    var boardTypeTextField: UITextField?
+    var boardTypePickerView: UIPickerView?
+    var boardTypePickerViewExitButton: UIBarButtonItem!
+    var boardTypePickerViewToolbar: UIToolbar!
+    var boardNumberTextField: UITextField?
+    var boardBatteryTextField: UITextField?
+    var boardCostTextField: UITextField?
+    var registerButton: UIButton?
+    
+    //let locationManager: LocationProviding = LocationManager()
     
     func createLabel(text: String, top: CGFloat, left: CGFloat) -> UILabel
     {
@@ -40,58 +63,76 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate {
         textField.borderStyle = .roundedRect
         textField.keyboardType = .default
         textField.returnKeyType = .done
+        textField.isUserInteractionEnabled = true
+        textField.isEnabled = true
         textField.delegate = self
         
         view.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.widthAnchor.constraint(equalToConstant: 235).isActive = true
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: top),
             textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: left),
         ])
         
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool
-        {
-            // 키보드의 'Return' 버튼이 눌렸을 때 호출되는 메서드
-            textField.resignFirstResponder() // 키보드 숨김
-            return true
-        }
-        
         return textField
     }
     
-    func createPickerView(pickerList: [String], top: CGFloat, left: CGFloat) -> UIPickerView
-    {
-        let pickerView = UIPickerView()
-        let pickerList = pickerList
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
     
-
-        
-        func Component(in pickerView: UIPickerView) -> Int
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        if textField == boardTypeTextField
         {
-            return 1
+            if let text = textField.text
+            {
+                self.boardType = text
+            }
         }
         
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+        else if textField == boardNumberTextField
         {
-            return pickerList.count
+            if let text = textField.text, let unwrapBoardNumber = Int(text)
+            {
+                self.boardNumber = unwrapBoardNumber
+            }
         }
         
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+        else if textField == boardBatteryTextField
         {
-            return pickerList[row]
+            if let text = textField.text, let unwrapBoardNumber = Int(text)
+            {
+                self.boardBattery = unwrapBoardNumber
+            }
         }
         
-        view.addSubview(pickerView)
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        else if textField == boardCostTextField
+        {
+            if let text = textField.text, let unwrapBoardNumber = Int(text)
+            {
+                self.boardCost = unwrapBoardNumber
+            }
+        }
+    }
+    
+    
+    func creatExitButton() -> UIBarButtonItem
+    {
+        let exitButton = UIBarButtonItem()
         
-        NSLayoutConstraint.activate([
-            pickerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: top),
-            pickerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: left),
-        ])
+        exitButton.title = "닫기"
+        exitButton.target = self
         
         
-        return pickerView
+        return exitButton
     }
     
     override func viewDidLoad()
@@ -104,21 +145,113 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate {
         let title = createLabel(text: "킥보드 등록", top: 77, left: 0)
             title.font = UIFont.systemFont(ofSize: 32)
             NSLayoutConstraint.activate([title.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-        let boardTypeLabel = createLabel(text: "기종", top: 209, left: 46)
-        let boardNumberLabel = createLabel(text: "킥보드 번호\n(숫자 6자리)", top: 286, left: 19)
+        let _boardTypeLabel = createLabel(text: "기종", top: 160, left: 46)
+        boardTypeTextField = createTextField(placeholder: "기종을 선택해주세요.", top: 154, left: 131)
+        boardTypeTextField?.inputView = boardTypePickerView
+        
+        let boardTypePickerView = UIPickerView()
+        boardTypePickerView.delegate = self
+        
+        boardTypePickerViewExitButton = creatExitButton()
+        boardTypePickerViewExitButton.action = #selector(pickerExit)
+        boardTypePickerViewToolbar = UIToolbar()
+        boardTypePickerViewToolbar.tintColor = .blue
+        boardTypePickerViewToolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 35)
+        boardTypePickerViewToolbar.setItems([boardTypePickerViewExitButton], animated: true)
+        
+        boardTypeTextField?.inputAccessoryView = boardTypePickerViewToolbar
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        boardTypePickerViewToolbar.setItems([flexSpace, boardTypePickerViewExitButton], animated: true)
+
+        
+        let boardNumberLabel = createLabel(text: "킥보드 번호\n(숫자 6자리)", top: 237, left: 19)
             boardNumberLabel.numberOfLines = 2
-        let boardBatteryLabel = createLabel(text: "배터리 용량", top: 385, left: 24)
-        let boardCostLabel = createLabel(text: "가격", top: 462, left: 46)
-        let boardLocationLabel = createLabel(text: "위치", top: 539, left: 46)
+        boardNumberTextField = createTextField(placeholder: "킥보드 일련번호를 입력하세요.", top: 243, left: 131)
         
         
-        // TextField 목록
-        let boardNumber = createTextField(placeholder: "킥보드 일련번호를 입력하세요.", top: 292, left: 131)
+        let _boardBatteryLabel = createLabel(text: "배터리 용량", top: 336, left: 24)
+            boardBatteryTextField = createTextField(placeholder: "배터리 용량을 입력하세요.", top: 330, left: 131)
         
-        // PickerView 목록
-        let boardType = createPickerView(pickerList: ["A", "B", "C"], top: 112, left: 100)
+        
+        let _boardCostLabel = createLabel(text: "가격", top: 413, left: 46)
+            boardCostTextField = createTextField(placeholder: "분 당 가격을 입력하세요.", top: 410, left: 131)
+        
+        
+        let _boardLocationLabel = createLabel(text: "위치", top: 490, left: 46)
+        
+        
+        registerButton = UIButton(type: .system)
+        registerButton?.setTitle("추가하기", for: .normal)
+        registerButton?.setTitleColor(UIColor.white, for: .normal)
+        registerButton?.backgroundColor = UIColor.systemBlue
+        registerButton?.layer.cornerRadius = 10
+        registerButton?.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        view.addSubview(registerButton!)
+        
+        registerButton?.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+        registerButton!.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        registerButton!.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
+        registerButton!.widthAnchor.constraint(equalToConstant: 207),
+        registerButton!.heightAnchor.constraint(equalToConstant: 44)
+        ])
         
     }
     
-    let a = NMGLatLng(lat: 35.4, lng: 125.7)
+    
+    @objc func keyboardWillShow(notification: Notification)
+    {
+        // 키보드가 나타날 때 추가하기 버튼을 숨김
+        registerButton?.isHidden = true
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) 
+    {
+        // 키보드가 사라질 때 추가하기 버튼을 보임
+        registerButton?.isHidden = false
+    }
+    
+    @objc func pickerExit()
+    {
+        self.view.endEditing(true)
+    }
+    
+    @objc func buttonPressed()
+    {
+        board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardCost: boardCost, boardLocation: NMGLatLng(lat: 37.5670135, lng: 126.9783740), isAvilable: true))
+        
+        print("기종 : \(board[0].boardType), 킥보드 번호 : \(board[0].boardNumber), 배터리 : \(board[0].boardBattery)mAh, 가격 : 분 당 \(board[0].boardCost)원, 위치 : \(board[0].boardLocation), 대여 가능 여부 : \(board[0].isAvilable)")
+    }
+    
+   
+    
+    
+}
+
+
+extension BoardRegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource
+{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return pickerList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        return pickerList[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        print(pickerList[row])
+    }
+}
+
+class LocationManager
+{
+    
 }
