@@ -8,7 +8,16 @@
 import Foundation
 import NMapsMap
 
-struct User {
+//struct User {
+//    var id: String
+//    var password: String
+//    var name: String
+//    var phoneNumber: String
+//    var email: String
+//    var birthDate: String
+//}
+
+struct User: Codable {
     var id: String
     var password: String
     var name: String

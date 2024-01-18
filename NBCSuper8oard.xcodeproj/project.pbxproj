@@ -24,6 +24,9 @@
 		6CDBA0CF2B5651F100AF5E56 /* BoardRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDBA0CE2B5651F100AF5E56 /* BoardRegisterViewController.swift */; };
 
 		6FA1242834AC17986F70D52B /* Pods_NBCSuper8oard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */; };
+		BA39BCED2B564DB100D8EB16 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39BCEC2B564DB100D8EB16 /* SignUpViewController.swift */; };
+		BAAC01002B569BA000DDC9B2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAC00FF2B569BA000DDC9B2 /* SignInView.swift */; };
+		BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAC01012B57E26C00DDC9B2 /* UserStore.swift */; };
 		E079C8742B565C90001B35B5 /* CurrentlyRentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */; };
 		E079C8762B568E2B001B35B5 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E079C8752B568E2B001B35B5 /* MyPage.storyboard */; };
 		E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */; };
@@ -50,6 +53,9 @@
 		418F74FA6E3019E50878427C /* Pods-NBCSuper8oard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCSuper8oard.debug.xcconfig"; path = "Target Support Files/Pods-NBCSuper8oard/Pods-NBCSuper8oard.debug.xcconfig"; sourceTree = "<group>"; };
 		6CDBA0CE2B5651F100AF5E56 /* BoardRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardRegisterViewController.swift; sourceTree = "<group>"; };
 		915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCSuper8oard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA39BCEC2B564DB100D8EB16 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BAAC00FF2B569BA000DDC9B2 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		BAAC01012B57E26C00DDC9B2 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentlyRentingViewController.swift; sourceTree = "<group>"; };
 		E079C8752B568E2B001B35B5 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -90,9 +96,13 @@
 		144548392B56174E00C10D76 /* NBCSuper8oard */ = {
 			isa = PBXGroup;
 			children = (
+            
+				BA39BCEB2B56480C00D8EB16 /* SignInUp */,
+
 
 				144548522B56590C00C10D76 /* Controller */,
 				144548512B56590500C10D76 /* View */,
+
 				E079C8722B565C73001B35B5 /* View */,
 				E079C8712B565C6B001B35B5 /* Controller */,
 				144548502B56197B00C10D76 /* Model */,
@@ -152,6 +162,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+
+		BA39BCEB2B56480C00D8EB16 /* SignInUp */ = {
+			isa = PBXGroup;
+			children = (
+				BA39BCEC2B564DB100D8EB16 /* SignUpViewController.swift */,
+				BAAC00FF2B569BA000DDC9B2 /* SignInView.swift */,
+				BAAC01012B57E26C00DDC9B2 /* UserStore.swift */,
+			);
+			path = SignInUp;
+
 		E079C8712B565C6B001B35B5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +197,7 @@
 				E079C8752B568E2B001B35B5 /* MyPage.storyboard */,
 			);
 			path = MyPage;
+
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +325,14 @@
 				E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */,
 
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
+
+				BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */,
+				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
+				BAAC01002B569BA000DDC9B2 /* SignInView.swift in Sources */,
+				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
+				1445484F2B56196E00C10D76 /* Model.swift in Sources */,
+				BA39BCED2B564DB100D8EB16 /* SignUpViewController.swift in Sources */,
+
 				144548562B566C6B00C10D76 /* MapViewController.swift in Sources */,
 				144548582B566EBB00C10D76 /* MyPageViewController.swift in Sources */,
 				1445485A2B56954C00C10D76 /* RegisterViewController.swift in Sources */,
@@ -312,6 +341,7 @@
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
 				144548542B565ACF00C10D76 /* TabBarController.swift in Sources */,
 				1445484F2B56196E00C10D76 /* User.swift in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
