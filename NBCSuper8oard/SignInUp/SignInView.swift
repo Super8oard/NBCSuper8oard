@@ -114,7 +114,15 @@ class AuthenticationViewController: UIViewController {
 //        // 使用 UserDefaults 检索用户信息
         if let user = retrieveUserFromUserDefaults(forKey: idToLogin), user.password == passwordToLogin {
             UserDefaults.standard.setValue(idToLogin, forKey: "isLogin")
-            showAlert(message: "로그인 성공했습니다!")
+
+            if let window = UIApplication.shared.windows.first {
+                let tabBarVC = TabBarController()
+                tabBarVC.user = user
+                window.rootViewController = tabBarVC
+                window.makeKeyAndVisible()
+                UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromTop, animations: nil, completion: nil)
+            }
+//            showAlert(message: "로그인 성공했습니다!")
         } else {
             showAlert(message: "로그인 실패했습니다. 아이디 또는 비밀번호를 확인하세요.")
         }

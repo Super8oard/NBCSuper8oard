@@ -42,11 +42,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
         self.tabBar.backgroundColor = .white
         
-
-        
         self.viewControllers = [mapTabVC, registerTab, myPageTab]
     }
-
 }
 
 //MARK: Resize Image Object
