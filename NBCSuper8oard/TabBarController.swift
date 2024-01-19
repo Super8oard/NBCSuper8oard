@@ -8,6 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
+    
     var user: User?
     
     var mapTabVC: MapViewController {
@@ -25,12 +26,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     var myPageTab: MyPageViewController {
-        let myPageTab = MyPageViewController()
+        let myPageNavi = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "MyPageNavi") as! UINavigationController
+        let myPageTab = myPageNavi.viewControllers.first as! MyPageViewController
         let myPageTabItem = UITabBarItem(title: "My Page", image: UIImage(named: "MyPageIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 2)
         myPageTab.tabBarItem = myPageTabItem
         return myPageTab
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

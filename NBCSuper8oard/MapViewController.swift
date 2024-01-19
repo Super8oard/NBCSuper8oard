@@ -10,7 +10,7 @@ import NMapsMap
 import CoreLocation
 
 class MapViewController: UIViewController, UIViewControllerTransitioningDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
-    
+    weak var tabBarVC: TabBarController?
     lazy var boardList = [Board]()
     var numberOfDummyData = 30
     lazy var mapView = NMFMapView(frame: view.frame)
@@ -59,6 +59,8 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
 //        mapView.showCompass = true
         makeDummyData()
 // 마커 터치 시 나오는 모달 창 만들기 (킥보드 정보, 대여하기 버튼)
+        
+        tabBarVC = parent as? TabBarController
     }
     override func viewWillAppear(_ animated: Bool) {
         for board in boardList {
