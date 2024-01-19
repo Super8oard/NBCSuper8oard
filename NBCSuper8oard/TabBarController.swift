@@ -19,9 +19,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
         self.tabBar.backgroundColor = .white
         
-        let mapTab = MapViewController()
-        let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 0)
-        mapTab.tabBarItem = mapTabItem
+//        let mapTab = MapViewController()
+//        let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 0)
+//        mapTab.tabBarItem = mapTabItem
         
         let registerTab = BoardRegisterViewController()
         let registerTabItem = UITabBarItem(title: "킥보드 등록", image: UIImage(named: "BoardIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 1)
@@ -31,7 +31,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let myPageTabItem = UITabBarItem(title: "My Page", image: UIImage(named: "MyPageIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 2)
         myPageTab.tabBarItem = myPageTabItem
         
-        self.viewControllers = [mapTab, registerTab, myPageTab]
+        self.viewControllers = [registerTab, myPageTab]
     }
 
 }
