@@ -13,8 +13,6 @@
 		144548442B56175000C10D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 144548432B56175000C10D76 /* Assets.xcassets */; };
 		144548472B56175000C10D76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144548452B56175000C10D76 /* LaunchScreen.storyboard */; };
 		1445484F2B56196E00C10D76 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445484E2B56196E00C10D76 /* User.swift */; };
-		144548562B566C6B00C10D76 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548552B566C6B00C10D76 /* MapViewController.swift */; };
-		1445485A2B56954C00C10D76 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548592B56954C00C10D76 /* TabBarController.swift */; };
 		1445485C2B57589000C10D76 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445485B2B57589000C10D76 /* Board.swift */; };
 		144548642B58BC7F00C10D76 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548632B58BC7F00C10D76 /* DetailViewController.swift */; };
 		144548692B59595500C10D76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548682B59595500C10D76 /* SignUpViewController.swift */; };
@@ -296,8 +294,6 @@
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
 				1445484F2B56196E00C10D76 /* User.swift in Sources */,
-				144548562B566C6B00C10D76 /* MapViewController.swift in Sources */,
-				1445485A2B56954C00C10D76 /* TabBarController.swift in Sources */,
 				144548692B59595500C10D76 /* SignUpViewController.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445485C2B57589000C10D76 /* Board.swift in Sources */,

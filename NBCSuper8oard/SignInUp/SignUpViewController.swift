@@ -86,7 +86,7 @@ class SignUpViewController: UIViewController {
     }
     
     func setupUI() {
-        view.backgroundColor = .systemYellow
+        view.backgroundColor = .systemGreen
         
         // Add UI elements to the view
         view.addSubview(idTextField)
@@ -106,26 +106,26 @@ class SignUpViewController: UIViewController {
         // Layout UI elements
         NSLayoutConstraint.activate([
             idTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            idTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            idTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            idTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            idTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             passwordTextField.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: 20),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            confirmPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            confirmPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             nameTextField.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 20),
-            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             phoneNumberTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
-            phoneNumberTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            phoneNumberTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            phoneNumberTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            phoneNumberTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             emailTextField.topAnchor.constraint(equalTo: phoneNumberTextField.bottomAnchor, constant: 20),
-            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             birthDateTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            birthDateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            birthDateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            birthDateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            birthDateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             signUpButton.topAnchor.constraint(equalTo: birthDateTextField.bottomAnchor, constant: 20),
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signUpButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -20)

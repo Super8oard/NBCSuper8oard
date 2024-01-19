@@ -13,6 +13,14 @@ class AuthenticationViewController: UIViewController {
 
     var usersDictionary: [String: User] = [:]
     
+    let appLogoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Kickboard")
+        imageView.contentMode = .scaleAspectFit // 根据需要调整内容模式
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let idTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "아이디"
@@ -50,6 +58,9 @@ class AuthenticationViewController: UIViewController {
     }
 
     func setupUI() {
+        
+        view.addSubview(appLogoImageView)
+        
         view.backgroundColor = .white
 
         // Add UI elements to the view
@@ -64,12 +75,17 @@ class AuthenticationViewController: UIViewController {
 
         // Layout UI elements
         NSLayoutConstraint.activate([
-            idTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            idTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            idTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            appLogoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            appLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            appLogoImageView.widthAnchor.constraint(equalToConstant: 180), // 根据需要调整宽度
+            appLogoImageView.heightAnchor.constraint(equalToConstant: 180), // 根据需要调整高度
+            
+            idTextField.topAnchor.constraint(equalTo: appLogoImageView.bottomAnchor, constant: 100),
+            idTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            idTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             passwordTextField.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: 20),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
