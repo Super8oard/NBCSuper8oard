@@ -21,6 +21,7 @@
 		6FA1242834AC17986F70D52B /* Pods_NBCSuper8oard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */; };
 		BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAC01012B57E26C00DDC9B2 /* UserStore.swift */; };
 		E02061582B5B25D1007701F8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548592B56954C00C10D76 /* TabBarController.swift */; };
+		E020615B2B5B3074007701F8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548552B566C6B00C10D76 /* MapViewController.swift */; };
 		E079C8742B565C90001B35B5 /* CurrentlyRentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */; };
 		E079C8762B568E2B001B35B5 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E079C8752B568E2B001B35B5 /* MyPage.storyboard */; };
 		E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */; };
@@ -299,6 +300,7 @@
 				E079C8742B565C90001B35B5 /* CurrentlyRentingViewController.swift in Sources */,
 				E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */,
 				E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */,
+				E020615B2B5B3074007701F8 /* MapViewController.swift in Sources */,
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
 				BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,

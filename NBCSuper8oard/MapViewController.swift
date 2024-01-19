@@ -96,18 +96,18 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
 //MARK: Marker Config Methods
 extension MapViewController {
     private func placeBoardOnMap(board: Board) -> NMFMarker {
-        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
-            guard let marker = overlay else { return true }
-            var tappedBoard: Board?
-            for board in self!.boardList {
-                if marker.position == board.boardLocation {
-                    tappedBoard = board
-                } else { return false }
-            }
-            let detailVC = DetailViewController(selectedBoard: tappedBoard)
-            self?.present(detailVC, animated: true, completion: nil)
-            return true
-        }
+//        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
+//            guard let marker = overlay else { return true }
+//            var tappedBoard: Board?
+//            for board in self!.boardList {
+//                if marker.position == board.boardLocation {
+//                    tappedBoard = board
+//                } else { return false }
+//            }
+//            let detailVC = DetailViewController(selectedBoard: tappedBoard)
+//            self?.present(detailVC, animated: true, completion: nil)
+//            return true
+//        }
         let marker = NMFMarker(position: board.boardLocation)
         marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
         marker.touchHandler = markerTapEvent

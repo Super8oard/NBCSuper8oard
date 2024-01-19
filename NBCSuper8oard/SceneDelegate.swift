@@ -20,8 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        if UserDefaults.standard.bool(forKey: "isLogin") {
-            window?.rootViewController = TabBarController()
+        if let userKey = UserDefaults.standard.value(forKey: "isLogin") as? String {
+            let tabBarVC = TabBarController()
+            tabBarVC.user = retrieveUserFromUserDefaults(forKey: userKey)
+            window?.rootViewController = tabBarVC
         } else {
             window?.rootViewController = AuthenticationViewController()
         }

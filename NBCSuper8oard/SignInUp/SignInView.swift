@@ -113,7 +113,7 @@ class AuthenticationViewController: UIViewController {
         
 //        // 使用 UserDefaults 检索用户信息
         if let user = retrieveUserFromUserDefaults(forKey: idToLogin), user.password == passwordToLogin {
-            UserDefaults.standard.set(idToLogin, forKey: "isLogin")
+            UserDefaults.standard.setValue(idToLogin, forKey: "isLogin")
             showAlert(message: "로그인 성공했습니다!")
         } else {
             showAlert(message: "로그인 실패했습니다. 아이디 또는 비밀번호를 확인하세요.")
