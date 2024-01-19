@@ -8,16 +8,18 @@
 import UIKit
 
 class MyPageViewController: UIViewController {
-    @IBOutlet var userNameLabel: UILabel!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
       
     let cellDatas: [MyPageCell.CellData] = [.init(systemImage: "person.crop.square.fill", title: "개인정보"),
                                             .init(systemImage: "scooter", title: "내가 등록한 킥보드"),
                                             .init(systemImage: "list.bullet", title: "킥보드 이용 내역")]
+    weak var tabBarVC: TabBarController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tabBarVC = parent as? TabBarController
+        
         setUpTableView()
     }
 }

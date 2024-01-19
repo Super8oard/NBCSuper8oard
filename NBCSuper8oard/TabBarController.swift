@@ -8,7 +8,31 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
-
+    
+    var user: User?
+    
+    var mapTabVC: MapViewController {
+        let mapTab = MapViewController()
+        let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 0)
+        mapTab.tabBarItem = mapTabItem
+        return mapTab
+    }
+    
+    var registerTab: BoardRegisterViewController {
+        let registerTab = BoardRegisterViewController()
+        let registerTabItem = UITabBarItem(title: "킥보드 등록", image: UIImage(named: "BoardIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 1)
+        registerTab.tabBarItem = registerTabItem
+        return registerTab
+    }
+    
+    var myPageTab: MyPageViewController {
+        let myPageNavi = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(withIdentifier: "MyPageNavi") as! UINavigationController
+        let myPageTab = myPageNavi.viewControllers.first as! MyPageViewController
+        let myPageTabItem = UITabBarItem(title: "My Page", image: UIImage(named: "MyPageIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 2)
+        myPageTab.tabBarItem = myPageTabItem
+        return myPageTab
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,21 +43,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
         self.tabBar.backgroundColor = .white
         
-        let mapTab = MapViewController()
-        let mapTabItem = UITabBarItem(title: "지도", image: UIImage(named: "MapIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 0)
-        mapTab.tabBarItem = mapTabItem
-        
-        let registerTab = BoardRegisterViewController()
-        let registerTabItem = UITabBarItem(title: "킥보드 등록", image: UIImage(named: "BoardIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 1)
-        registerTab.tabBarItem = registerTabItem
-        
-        let myPageTab = MyPageViewController()
-        let myPageTabItem = UITabBarItem(title: "My Page", image: UIImage(named: "MyPageIcon")?.resized(to: CGSize(width: 20, height: 20)), tag: 2)
-        myPageTab.tabBarItem = myPageTabItem
-        
-        self.viewControllers = [mapTab, registerTab, myPageTab]
+        self.viewControllers = [mapTabVC, registerTab, myPageTab]
     }
-
 }
 
 //MARK: Resize Image Object

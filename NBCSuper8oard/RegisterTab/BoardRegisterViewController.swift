@@ -13,6 +13,7 @@ import CoreLocation
 
 class BoardRegisterViewController: UIViewController, UITextFieldDelegate
 {
+    weak var tabBarVC: TabBarController?
     var board: [Board] = []
     
     var boardType: String = ""
@@ -196,6 +197,7 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate
         registerButton!.heightAnchor.constraint(equalToConstant: 44)
         ])
         
+        tabBarVC = parent as? TabBarController
     }
     
     

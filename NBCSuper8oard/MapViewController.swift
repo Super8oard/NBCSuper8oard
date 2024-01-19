@@ -10,7 +10,7 @@ import NMapsMap
 import CoreLocation
 
 class MapViewController: UIViewController, UIViewControllerTransitioningDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
-    
+    weak var tabBarVC: TabBarController?
     lazy var boardList = [Board]()
     var numberOfDummyData = 30
     lazy var mapView = NMFMapView(frame: view.frame)
@@ -59,6 +59,8 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
 //        mapView.showCompass = true
         makeDummyData()
 // 마커 터치 시 나오는 모달 창 만들기 (킥보드 정보, 대여하기 버튼)
+        
+        tabBarVC = parent as? TabBarController
     }
     override func viewWillAppear(_ animated: Bool) {
         for board in boardList {
@@ -96,18 +98,18 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
 //MARK: Marker Config Methods
 extension MapViewController {
     private func placeBoardOnMap(board: Board) -> NMFMarker {
-        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
-            guard let marker = overlay else { return true }
-            var tappedBoard: Board?
-            for board in self!.boardList {
-                if marker.position == board.boardLocation {
-                    tappedBoard = board
-                } else { return false }
-            }
-            let detailVC = DetailViewController(selectedBoard: tappedBoard)
-            self?.present(detailVC, animated: true, completion: nil)
-            return true
-        }
+//        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
+//            guard let marker = overlay else { return true }
+//            var tappedBoard: Board?
+//            for board in self!.boardList {
+//                if marker.position == board.boardLocation {
+//                    tappedBoard = board
+//                } else { return false }
+//            }
+//            let detailVC = DetailViewController(selectedBoard: tappedBoard)
+//            self?.present(detailVC, animated: true, completion: nil)
+//            return true
+//        }
         let marker = NMFMarker(position: board.boardLocation)
         marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
         marker.touchHandler = markerTapEvent

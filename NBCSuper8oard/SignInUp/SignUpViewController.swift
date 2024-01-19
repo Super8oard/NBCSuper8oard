@@ -154,13 +154,10 @@ class SignUpViewController: UIViewController {
         }
         
         // Check if passwords match
-               if password == confirmPassword {
-                   // Passwords match, you can proceed with registration logic
-                   showAlert(message: "회원가입 성공합니다！")
-               } else {
-                   // Passwords don't match, show an alert
-                   showAlert(message: "비밀번호가 일치하지 않습니다")
-               }
+        if password != confirmPassword {
+            showAlert(message: "비밀번호가 일치하지 않습니다")
+            return
+        }
         
         let newUser = User(id: id, password: password, name: name, phoneNumber: phoneNumber, email: email, birthDate: birthDate)
         usersDictionary[id] = newUser
@@ -174,7 +171,9 @@ class SignUpViewController: UIViewController {
     
     func showAlert(message: String) {
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "확인", style: .default) { action in
+            self.dismiss(animated: true)
+        }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
