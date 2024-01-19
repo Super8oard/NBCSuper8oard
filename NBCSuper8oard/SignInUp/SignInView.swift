@@ -26,6 +26,7 @@ class AuthenticationViewController: UIViewController {
         textField.placeholder = "아이디"
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
         return textField
     }()
 
@@ -91,6 +92,9 @@ class AuthenticationViewController: UIViewController {
             signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+        
+        idTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     @objc func loginButtonTapped() {
@@ -109,28 +113,37 @@ class AuthenticationViewController: UIViewController {
         
 //        // 使用 UserDefaults 检索用户信息
         if let user = retrieveUserFromUserDefaults(forKey: idToLogin), user.password == passwordToLogin {
-               showAlert(message: "로그인 성공했습니다!")
-           } else {
-               showAlert(message: "로그인 실패했습니다. 아이디 또는 비밀번호를 확인하세요.")
-           }
-       }
+            UserDefaults.standard.set(idToLogin, forKey: "isLogin")
+            showAlert(message: "로그인 성공했습니다!")
+        } else {
+            showAlert(message: "로그인 실패했습니다. 아이디 또는 비밀번호를 확인하세요.")
+        }
+    }
     
     
     
     
-           func showAlert(message: String) {
-                let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-                    alert.addAction(okAction)
-                    present(alert, animated: true, completion: nil)
-               
-               
-               
-                                }
+    func showAlert(message: String) {
+         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+        
+        
+        
+    }
     
 
     @objc func signUpButtonTapped() {
         let signUpViewController = SignUpViewController()
            present(signUpViewController, animated: true, completion: nil)
+    }
+}
+
+extension AuthenticationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Dismiss the keyboard
+        textField.resignFirstResponder()
+        return true
     }
 }
