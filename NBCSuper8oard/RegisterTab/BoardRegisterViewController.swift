@@ -11,10 +11,12 @@ import CoreLocation
 
 
 
-class BoardRegisterViewController: UIViewController, UITextFieldDelegate
+class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate
 {
     var board: [Board] = []
     var index: Int = 0
+    var locationManager: CLLocationManager!
+    var locationMapView: NMFMapView!
     
     var boardType: String = ""
     var boardNumber: Int = 0
@@ -181,7 +183,23 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate
         
         _ = createLabel(text: "위치", top: 490, left: 46)     // 위치 텍스트 레이블
         
+        // 지도 뷰 관리
+        locationMapView = NMFMapView(frame: CGRect(x: 131, y: 490, width: 235, height: 200))
+        locationMapView.positionMode = .disabled // 위치 추적 모드 비활성화
+        view.addSubview(locationMapView)
+
+        let target = NMGLatLng(lat: 37.5670135, lng: 126.9783740)
+        let cameraPosition = NMFCameraPosition(target, zoom: 14)
+        locationMapView.moveCamera(NMFCameraUpdate(position: cameraPosition))
         
+        // 위치 관리
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+        
+        // 추가하기 버튼
         registerButton = UIButton(type: .system)
         registerButton?.setTitle("추가하기", for: .normal)
         registerButton?.setTitleColor(UIColor.white, for: .normal)
@@ -193,7 +211,7 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate
         registerButton?.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
         registerButton!.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        registerButton!.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 600),
+        registerButton!.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 710),
         registerButton!.widthAnchor.constraint(equalToConstant: 207),
         registerButton!.heightAnchor.constraint(equalToConstant: 44)
         ])
@@ -206,6 +224,29 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate
         self.view.endEditing(true)
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) 
+    {
+        guard let location = locations.first
+        else {return}
+        
+        let target = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
+        let cameraPosition = NMFCameraPosition(target, zoom: 14)
+        locationMapView.moveCamera(NMFCameraUpdate(position: cameraPosition))
+        
+        let marker = NMFMarker()
+        marker.position = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
+        marker.mapView = locationMapView
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) 
+    {
+        if status == .authorizedWhenInUse
+        {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     @objc func buttonPressed()
     {
         board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: NMGLatLng(lat: 37.5670135, lng: 126.9783740), isAvailable: true))
@@ -213,9 +254,6 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate
         print("기종 : \(board[index].boardType), 킥보드 번호 : \(board[index].boardNumber), 배터리 : \(board[index].boardBattery)mAh, 가격 : 분 당 \(board[index].boardPrice)원, 위치 : \(board[index].boardLocation), 대여 가능 여부 : \(board[index].isAvailable)")
         index += 1
     }
-    
-   
-    
     
 }
 
