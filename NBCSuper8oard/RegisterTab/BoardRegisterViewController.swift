@@ -10,7 +10,6 @@ import NMapsMap
 import CoreLocation
 
 
-
 class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate
 {
     var board: [Board] = []
@@ -26,17 +25,15 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
     
     let pickerList: [String] = ["A", "B", "C"]
     
-    var boardTypeTextField: UITextField?
-    var boardTypePickerView: UIPickerView?
-    var boardTypePickerViewExitButton: UIBarButtonItem!
-    var boardTypePickerViewToolbar: UIToolbar!
-    var boardNumberTextField: UITextField?
-    var boardBatteryTextField: UITextField?
-    var boardCostTextField: UITextField?
-    var registerButton: UIButton?
+    var boardTypeTextField: UITextField!
+    var boardTypePickerView: UIPickerView!
+    var boardNumberTextField: UITextField!
+    var boardBatteryTextField: UITextField!
+    var boardPriceTextField: UITextField!
+    var registerButton: UIButton!
     
-    //let locationManager: LocationProviding = LocationManager()
     
+    // 레이블 생성 메서드
     func createLabel(text: String, top: CGFloat, left: CGFloat) -> UILabel
     {
         let label = UILabel()
@@ -58,6 +55,7 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         return label
     }
     
+    // TextField 생성 메서드
     func createTextField(placeholder: String, top: CGFloat, left: CGFloat) -> UITextField
     {
         let textField = UITextField()
@@ -82,16 +80,20 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         return textField
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    // 키보드 입력 시작
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
+    {
         return true
     }
     
+    // 키보드 Return 버튼이 눌렸을때
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
     
+    // TextField 입력 값 각 변수에 저장 ( 필요한 경우에는 형 변환 )
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         if textField == boardTypeTextField
@@ -118,7 +120,7 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
             }
         }
         
-        else if textField == boardCostTextField
+        else if textField == boardPriceTextField
         {
             if let text = textField.text, let unwrapBoardNumber = Int(text)
             {
@@ -127,16 +129,23 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         }
     }
     
-    
-    func creatExitButton() -> UIBarButtonItem
+    // Toolbar 및 완료 버튼 생성
+    func creatToolbarExitButton(textFieldName: UITextField)
     {
+        let toolbar = UIToolbar()
         let exitButton = UIBarButtonItem()
         
-        exitButton.title = "닫기"
+        exitButton.title = "완료"
         exitButton.target = self
+        exitButton.action = #selector(pickerExit)
         
+        toolbar.tintColor = .blue
+        toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 35)
+        toolbar.setItems([exitButton], animated: true)
         
-        return exitButton
+        textFieldName.inputAccessoryView = toolbar
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([flexSpace, exitButton], animated: true)
     }
     
     override func viewDidLoad()
@@ -155,30 +164,25 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         let boardTypePickerView = UIPickerView()        // PickerView 생성
         boardTypePickerView.delegate = self
         boardTypeTextField?.inputView = boardTypePickerView     //
-        
-        boardTypePickerViewExitButton = creatExitButton()
-        boardTypePickerViewExitButton.action = #selector(pickerExit)
-        boardTypePickerViewToolbar = UIToolbar()
-        boardTypePickerViewToolbar.tintColor = .blue
-        boardTypePickerViewToolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 35)
-        boardTypePickerViewToolbar.setItems([boardTypePickerViewExitButton], animated: true)
-        
-        boardTypeTextField?.inputAccessoryView = boardTypePickerViewToolbar
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        boardTypePickerViewToolbar.setItems([flexSpace, boardTypePickerViewExitButton], animated: true)
-
+        creatToolbarExitButton(textFieldName: boardTypeTextField)
         
         let boardNumberLabel = createLabel(text: "킥보드 번호\n(숫자 6자리)", top: 237, left: 19)        // 킥보드 번호 텍스트 레이블
             boardNumberLabel.numberOfLines = 2
         boardNumberTextField = createTextField(placeholder: "킥보드 일련번호를 입력하세요.", top: 243, left: 131)
+        boardNumberTextField.keyboardType = .numberPad
+        creatToolbarExitButton(textFieldName: boardNumberTextField)
         
         
         _ = createLabel(text: "배터리 용량", top: 336, left: 24)     // 배터리 용량 텍스트 레이블
             boardBatteryTextField = createTextField(placeholder: "배터리 용량을 입력하세요.", top: 330, left: 131)
+        boardBatteryTextField.keyboardType = .numberPad
+        creatToolbarExitButton(textFieldName: boardBatteryTextField)
         
         
         _ = createLabel(text: "가격", top: 413, left: 46)     // 가격 텍스트 레이블
-            boardCostTextField = createTextField(placeholder: "분 당 가격을 입력하세요.", top: 410, left: 131)
+            boardPriceTextField = createTextField(placeholder: "분 당 가격을 입력하세요.", top: 410, left: 131)
+        boardPriceTextField.keyboardType = .numberPad
+        creatToolbarExitButton(textFieldName: boardPriceTextField)
         
         
         _ = createLabel(text: "위치", top: 490, left: 46)     // 위치 텍스트 레이블
@@ -199,9 +203,9 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
         
-        // 추가하기 버튼
+        // 등록하기 버튼
         registerButton = UIButton(type: .system)
-        registerButton?.setTitle("추가하기", for: .normal)
+        registerButton?.setTitle("등록하기", for: .normal)
         registerButton?.setTitleColor(UIColor.white, for: .normal)
         registerButton?.backgroundColor = UIColor.systemBlue
         registerButton?.layer.cornerRadius = 10
@@ -250,6 +254,10 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
     @objc func buttonPressed()
     {
         board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: NMGLatLng(lat: 37.5670135, lng: 126.9783740), isAvailable: true))
+        
+        let alert = UIAlertController(title: "등록 완료", message: "킥보드가 등록되었습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: nil))
+        present(alert, animated: true, completion: nil)
         
         print("기종 : \(board[index].boardType), 킥보드 번호 : \(board[index].boardNumber), 배터리 : \(board[index].boardBattery)mAh, 가격 : 분 당 \(board[index].boardPrice)원, 위치 : \(board[index].boardLocation), 대여 가능 여부 : \(board[index].isAvailable)")
         index += 1
