@@ -13,12 +13,12 @@
 		144548442B56175000C10D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 144548432B56175000C10D76 /* Assets.xcassets */; };
 		144548472B56175000C10D76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144548452B56175000C10D76 /* LaunchScreen.storyboard */; };
 		1445484F2B56196E00C10D76 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445484E2B56196E00C10D76 /* User.swift */; };
-		144548562B566C6B00C10D76 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548552B566C6B00C10D76 /* MapViewController.swift */; };
 		1445485A2B56954C00C10D76 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548592B56954C00C10D76 /* TabBarController.swift */; };
 		1445485C2B57589000C10D76 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445485B2B57589000C10D76 /* Board.swift */; };
 		144548642B58BC7F00C10D76 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548632B58BC7F00C10D76 /* DetailViewController.swift */; };
 		144548692B59595500C10D76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548682B59595500C10D76 /* SignUpViewController.swift */; };
 		1445486B2B59595D00C10D76 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445486A2B59595D00C10D76 /* SignInView.swift */; };
+		6CD0D2622B5A0EE9009DE4FC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548552B566C6B00C10D76 /* MapViewController.swift */; };
 		6CDBA0CF2B5651F100AF5E56 /* BoardRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDBA0CE2B5651F100AF5E56 /* BoardRegisterViewController.swift */; };
 		6FA1242834AC17986F70D52B /* Pods_NBCSuper8oard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */; };
 		BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAC01012B57E26C00DDC9B2 /* UserStore.swift */; };
@@ -292,11 +292,11 @@
 				E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */,
 				E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */,
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
+				6CD0D2622B5A0EE9009DE4FC /* MapViewController.swift in Sources */,
 				BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
 				1445484F2B56196E00C10D76 /* User.swift in Sources */,
-				144548562B566C6B00C10D76 /* MapViewController.swift in Sources */,
 				1445485A2B56954C00C10D76 /* TabBarController.swift in Sources */,
 				144548692B59595500C10D76 /* SignUpViewController.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,

@@ -60,11 +60,11 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         makeDummyData()
 // 마커 터치 시 나오는 모달 창 만들기 (킥보드 정보, 대여하기 버튼)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        for board in boardList {
-            placeBoardOnMap(board: board).mapView = self.mapView
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        for board in boardList {
+//            placeBoardOnMap(board: board).mapView = self.mapView
+//        }
+//    }
     
 //    func presentDetailView(input: Board?) {
 //        let detailViewController = DetailViewController(selectedBoard: input)
@@ -95,26 +95,26 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
 
 //MARK: Marker Config Methods
 extension MapViewController {
-    private func placeBoardOnMap(board: Board) -> NMFMarker {
-        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
-            guard let marker = overlay else { return true }
-            var tappedBoard: Board?
-            for board in self!.boardList {
-                if marker.position == board.boardLocation {
-                    tappedBoard = board
-                } else { return false }
-            }
-            let detailVC = DetailViewController(selectedBoard: tappedBoard)
-            self?.present(detailVC, animated: true, completion: nil)
-            return true
-        }
-        let marker = NMFMarker(position: board.boardLocation)
-        marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
-        marker.touchHandler = markerTapEvent
-        marker.maxZoom = 10
-        marker.tag = UInt(board.boardNumber)
-        return marker
-    }
+//    private func placeBoardOnMap(board: Board) -> NMFMarker {
+//        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
+//            guard let marker = overlay else { return true }
+//            var tappedBoard: Board?
+//            for board in self!.boardList {
+//                if marker.position == board.boardLocation {
+//                    tappedBoard = board
+//                } else { return false }
+//            }
+//            let detailVC = DetailViewController(selectedBoard: tappedBoard)
+//            self?.present(detailVC, animated: true, completion: nil)
+//            return true
+//        }
+//        let marker = NMFMarker(position: board.boardLocation)
+//        marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
+//        marker.touchHandler = markerTapEvent
+//        marker.maxZoom = 10
+//        marker.tag = UInt(board.boardNumber)
+//        return marker
+//    }
 
     private func generateRandomNMGLatLng() -> NMGLatLng {
         return NMGLatLng(lat: Double.random(in: 37.3200...37.3700), lng: Double.random(in: 127.0800...127.1300))
