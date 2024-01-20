@@ -1,8 +1,8 @@
 //
-//  RegisterViewController.swift
+//  registerViewController.swift
 //  NBCSuper8oard
 //
-//  Created by 영현 on 1/16/24.
+//  Created by 영현 on 1/20/24.
 //
 
 import UIKit
@@ -12,7 +12,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .red
         // Do any additional setup after loading the view.
     }
     

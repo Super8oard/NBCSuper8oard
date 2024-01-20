@@ -10,8 +10,10 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var selectedBoard: Board?
+    var user: User?
     var isRented: ((Board) -> ())?
     var isHidden: ((Board) -> ())?
+    var hideMarker: ((Bool) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +42,23 @@ class DetailViewController: UIViewController {
         
         let rentButton = UIButton(type: .system)
         rentButton.setTitle("대여하기", for: .normal)
+        rentButton.backgroundColor = .systemBlue
         rentButton.frame = CGRect(x: 0, y: 120, width: view.frame.width, height: 40)
         rentButton.addTarget(self, action: #selector(rentButtonTapped), for: .touchUpInside)
         rentButton.isEnabled = selectedBoard?.isAvailable ?? false
+        if let user = self.user {
+            if user.isRiding {
+                rentButton.isEnabled = false
+            } else {
+                rentButton.isEnabled = true
+            }
+        }
         view.addSubview(rentButton)
     }
     
-    init(selectedBoard: Board? = nil) {
+    init(selectedBoard: Board? = nil, user: User? = nil) {
         self.selectedBoard = selectedBoard
+        self.user = user
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -62,6 +73,7 @@ class DetailViewController: UIViewController {
             temp.isAvailable = temp.isAvailable ? false : true
             isRented?(temp)
             isHidden?(temp)
+            hideMarker?(temp.isAvailable)
             dismiss(animated: true)
         }
         confirmAlert.addAction(rentAction)

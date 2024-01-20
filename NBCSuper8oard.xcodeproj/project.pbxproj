@@ -15,10 +15,10 @@
 		1445484F2B56196E00C10D76 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445484E2B56196E00C10D76 /* User.swift */; };
 		144548542B565ACF00C10D76 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548532B565ACF00C10D76 /* TabBarController.swift */; };
 		144548562B566C6B00C10D76 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548552B566C6B00C10D76 /* MapViewController.swift */; };
-		144548582B566EBB00C10D76 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548572B566EBB00C10D76 /* MyPageViewController.swift */; };
-		1445485A2B56954C00C10D76 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548592B56954C00C10D76 /* RegisterViewController.swift */; };
 		1445485C2B57589000C10D76 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1445485B2B57589000C10D76 /* Board.swift */; };
 		144548642B58BC7F00C10D76 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548632B58BC7F00C10D76 /* DetailViewController.swift */; };
+		144548712B5B98FA00C10D76 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548702B5B98FA00C10D76 /* RegisterViewController.swift */; };
+		144548732B5B990800C10D76 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144548722B5B990800C10D76 /* MyPageViewController.swift */; };
 		6FA1242834AC17986F70D52B /* Pods_NBCSuper8oard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,10 +34,10 @@
 		1445484E2B56196E00C10D76 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		144548532B565ACF00C10D76 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		144548552B566C6B00C10D76 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		144548572B566EBB00C10D76 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		144548592B56954C00C10D76 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1445485B2B57589000C10D76 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		144548632B58BC7F00C10D76 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		144548702B5B98FA00C10D76 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		144548722B5B990800C10D76 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		418F74FA6E3019E50878427C /* Pods-NBCSuper8oard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCSuper8oard.debug.xcconfig"; path = "Target Support Files/Pods-NBCSuper8oard/Pods-NBCSuper8oard.debug.xcconfig"; sourceTree = "<group>"; };
 		915177524B569384758A2A53 /* Pods_NBCSuper8oard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCSuper8oard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -100,10 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				144548552B566C6B00C10D76 /* MapViewController.swift */,
-				144548572B566EBB00C10D76 /* MyPageViewController.swift */,
-				144548592B56954C00C10D76 /* RegisterViewController.swift */,
 				144548532B565ACF00C10D76 /* TabBarController.swift */,
 				144548632B58BC7F00C10D76 /* DetailViewController.swift */,
+				144548702B5B98FA00C10D76 /* RegisterViewController.swift */,
+				144548722B5B990800C10D76 /* MyPageViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -242,9 +242,9 @@
 				144548642B58BC7F00C10D76 /* DetailViewController.swift in Sources */,
 				1445483F2B56174E00C10D76 /* ViewController.swift in Sources */,
 				144548562B566C6B00C10D76 /* MapViewController.swift in Sources */,
-				144548582B566EBB00C10D76 /* MyPageViewController.swift in Sources */,
-				1445485A2B56954C00C10D76 /* RegisterViewController.swift in Sources */,
+				144548712B5B98FA00C10D76 /* RegisterViewController.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
+				144548732B5B990800C10D76 /* MyPageViewController.swift in Sources */,
 				1445485C2B57589000C10D76 /* Board.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
 				144548542B565ACF00C10D76 /* TabBarController.swift in Sources */,

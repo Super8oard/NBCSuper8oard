@@ -15,32 +15,28 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     var locationManager = CLLocationManager()
     lazy var boardList = [Board]()
     var numberOfDummyData = 30
+    var user: User?
     
+    lazy var inUseLabel: UILabel = {
+        let label = UILabel()
+        label.text = "이용 중"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.backgroundColor = .green
+        label.textAlignment = .center
+        label.frame = CGRect(x: 150, y: 50, width: 100, height: 40)
+        label.isHidden = true
+        return label
+    }()
+
+    lazy var returnButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemBlue
+        button.frame = CGRect(x: 0, y: 200, width: 50, height: 30)
+        button.isHidden = true
+        return button
+    }()
     
-    lazy var markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
-        let marker = overlay
-        var tappedBoard: Board?
-        for board in self!.boardList {
-            if marker.userInfo["id"] as! String == String(board.boardNumber) {
-                tappedBoard = board
-            } else { continue }
-        }
-        let detailVC = DetailViewController(selectedBoard: tappedBoard)
-        // 마커에 해당된 데이터 빼고 isrented 결과값 대신 넣기 -> 마커 지도에서 사라짐
-        
-        // boardList 동시성 이슈 체크(코드 병합 시) ThreadLock, Mutex, Semaphore
-        detailVC.isRented = { [weak self] board in
-            for i in 0..<self!.boardList.count {
-                if self!.boardList[i].boardNumber == board.boardNumber {
-                    self?.boardList[i].isAvailable = board.isAvailable
-//                    marker.hidden = board.isAvailable ? "YES" : "NO"
-                }
-            }
-        }
-        self?.present(detailVC, animated: true, completion: nil)
-        return true
-    }
-    
+    // make dummy data for test
     func makeDummyData() {
         for i in 0..<numberOfDummyData {
             let tempLoc = generateRandomNMGLatLng()
@@ -48,6 +44,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
             boardList.append(data)
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +69,39 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         for board in boardList {
             placeBoardOnMap(board: board).mapView = self.mapView.mapView
         }
+        mapView.addSubview(inUseLabel)
+        mapView.addSubview(returnButton)
     }
+    
+    //MARK: Marker Click Event
+    lazy var markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
+        let marker = overlay
+        var tappedBoard: Board?
+        for board in self!.boardList {
+            if marker.userInfo["id"] as! String == String(board.boardNumber) {
+                tappedBoard = board
+            } else { continue }
+        }
+        let detailVC = DetailViewController(selectedBoard: tappedBoard, user: self?.user)
+
+        // boardList 동시성 이슈 체크(코드 병합 시) ThreadLock, Mutex, Semaphore
+        detailVC.isRented = { [weak self] board in
+            for i in 0..<self!.boardList.count {
+                if self?.boardList[i].boardNumber == board.boardNumber {
+                    self?.boardList[i].isAvailable = board.isAvailable
+                }
+            }
+        }
+        detailVC.hideMarker = { [weak self] isAvailable in
+            marker.mapView = isAvailable ? self?.mapView.mapView : nil
+            self?.user?.isRiding = !isAvailable
+            self?.inUseLabel.isHidden = isAvailable
+            self?.returnButton.isHidden = isAvailable
+        }
+        self?.present(detailVC, animated: true, completion: nil)
+        return true
+    }
+    
 }
 
 //MARK: Marker Config Methods
