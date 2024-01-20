@@ -42,8 +42,10 @@ class DetailViewController: UIViewController {
         
         let rentButton = UIButton(type: .system)
         rentButton.setTitle("대여하기", for: .normal)
+        rentButton.tintColor = .white
         rentButton.backgroundColor = .systemBlue
         rentButton.frame = CGRect(x: 0, y: 120, width: view.frame.width, height: 40)
+        rentButton.layer.cornerRadius = 10
         rentButton.addTarget(self, action: #selector(rentButtonTapped), for: .touchUpInside)
         rentButton.isEnabled = selectedBoard?.isAvailable ?? false
         if let user = self.user {
