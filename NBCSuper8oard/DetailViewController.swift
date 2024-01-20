@@ -10,6 +10,8 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var selectedBoard: Board?
+    var isRented: ((Board) -> ())?
+    var isHidden: ((Board) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,27 +19,30 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         let boardImage = UIImageView(frame: CGRect(x: 10, y: 20, width: 100, height: 100))
+        boardImage.image = UIImage(named: "BoardPicture")
+        view.addSubview(boardImage)
         
         
-        let typeLabel = UILabel(frame: CGRect(x: 120, y: 20, width: view.frame.width - 120, height: 30))
+        let typeLabel = UILabel(frame: CGRect(x: 120, y: 20, width: view.frame.width - 120, height: 20))
         typeLabel.text = selectedBoard?.boardType
         typeLabel.textAlignment = .left
         view.addSubview(typeLabel)
         
-        let priceLabel = UILabel(frame: CGRect(x: 120, y: 60, width: view.frame.width - 120, height: 30))
+        let priceLabel = UILabel(frame: CGRect(x: 120, y: 50, width: view.frame.width - 120, height: 20))
         priceLabel.text = "\(selectedBoard?.boardPrice ?? 0)"
         priceLabel.textAlignment = .left
         view.addSubview(priceLabel)
         
-        let isAvailableLabel = UILabel(frame: CGRect(x: 120, y: 100, width: view.frame.width - 120, height: 30))
+        let isAvailableLabel = UILabel(frame: CGRect(x: 120, y: 80, width: view.frame.width - 120, height: 20))
         isAvailableLabel.text = "\(selectedBoard?.isAvailable ?? false)"
         isAvailableLabel.textAlignment = .left
         view.addSubview(isAvailableLabel)
         
         let rentButton = UIButton(type: .system)
         rentButton.setTitle("대여하기", for: .normal)
-        rentButton.frame = CGRect(x: 10, y: 120, width: view.frame.width, height: 40)
+        rentButton.frame = CGRect(x: 0, y: 120, width: view.frame.width, height: 40)
         rentButton.addTarget(self, action: #selector(rentButtonTapped), for: .touchUpInside)
+        rentButton.isEnabled = selectedBoard?.isAvailable ?? false
         view.addSubview(rentButton)
     }
     
@@ -53,6 +58,10 @@ class DetailViewController: UIViewController {
     @objc func rentButtonTapped() {
         let confirmAlert = UIAlertController(title: "대여", message: "선택한 킥보드로 대여를 진행합니다.", preferredStyle: .alert)
         let rentAction = UIAlertAction(title: "확인", style: .default) { [self] _ in
+            guard var temp = selectedBoard else { return }
+            temp.isAvailable = temp.isAvailable ? false : true
+            isRented?(temp)
+            isHidden?(temp)
             dismiss(animated: true)
         }
         confirmAlert.addAction(rentAction)
