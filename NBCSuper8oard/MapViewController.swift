@@ -53,7 +53,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         search.setTitle("주소 검색", for: .normal)
         search.tintColor = .white
         search.backgroundColor = .systemBlue
-        search.frame = CGRect(x: 200, y: 300, width: 100, height: 40)
+        search.frame = CGRect(x: 280, y: 50, width: 100, height: 40)
         search.layer.cornerRadius = 10
         search.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         return search
@@ -89,12 +89,14 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     
     @objc func searchButtonTapped() {
         let searchVC = SearchViewController()
+        
+        present(searchVC, animated: true)
+        
         searchVC.setCameraLocation = { lat, lng in
-            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 7)
+            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 12)
             self.mapView.mapView.moveCamera(cameraUpdate)
             cameraUpdate.animation = .easeIn
         }
-        present(searchVC, animated: true)
     }
     // make dummy data for test
     func makeDummyData() {
@@ -112,7 +114,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         locationManager.delegate = self
         view.addSubview(mapView)
         setLocationData()
-//NMFMapView에서 사용 가능한 메서드
+//NMFMapView에서 사용 가능한 메서드 불정로 112
 //        mapView.setLayerGroup(NMF_LAYER_GROUP_BICYCLE, isEnabled: true)
         
 //NMFNaverMapView에서 사용 가능한 속성
