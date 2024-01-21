@@ -11,6 +11,10 @@ import CoreLocation
 
 class MapViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    let NAVER_CLIENT_ID = "rl9gufhvrz"
+    let NAVER_CLIENT_SECRET = "RVdBT1JkkSZWCqIuxDqIFHrL0J7gNO6C7Hs7tEL9"
+    let NAVER_GEOCODE_URL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="
+    
     lazy var mapView = NMFNaverMapView(frame: view.frame)
     var locationManager = CLLocationManager()
     lazy var boardList = [Board]()
@@ -41,14 +45,18 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         button.isHidden = true
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(returnBoard), for: .touchUpInside)
-//        if let user = self.user {
-//            if user.isRiding {
-//                button.isEnabled = false
-//            } else {
-//                button.isEnabled = true
-//            }
-//        }
         return button
+    }()
+    
+    lazy var searchButton: UIButton = {
+        let search = UIButton()
+        search.setTitle("주소 검색", for: .normal)
+        search.tintColor = .white
+        search.backgroundColor = .systemBlue
+        search.frame = CGRect(x: 200, y: 300, width: 100, height: 40)
+        search.layer.cornerRadius = 10
+        search.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        return search
     }()
     
     @objc func returnBoard() {
@@ -78,11 +86,21 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         returnAlert.addAction(cancelAction)
         present(returnAlert, animated: true)
     }
+    
+    @objc func searchButtonTapped() {
+        let searchVC = SearchViewController()
+        searchVC.setCameraLocation = { lat, lng in
+            let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng), zoomTo: 7)
+            self.mapView.mapView.moveCamera(cameraUpdate)
+            cameraUpdate.animation = .easeIn
+        }
+        present(searchVC, animated: true)
+    }
     // make dummy data for test
     func makeDummyData() {
         for i in 0..<numberOfDummyData {
             let tempLoc = generateRandomNMGLatLng()
-            let data = Board(boardType: "ninebot", boardNumber: i, boardBattery: 100, boardPrice: Int.random(in: 15...100), boardLocation: tempLoc, isAvailable: true)
+            let data = Board(boardType: "ninebot", boardNumber: i, boardBattery: 100, boardPrice: Int.random(in: 150...180), boardLocation: tempLoc, isAvailable: true)
             boardList.append(data)
         }
     }
@@ -113,6 +131,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         mapView.addSubview(inUseLabel)
         mapView.addSubview(returnButton)
+        mapView.addSubview(searchButton)
     }
     
     //MARK: Marker Click Event

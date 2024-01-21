@@ -26,17 +26,17 @@ class DetailViewController: UIViewController {
         
         
         let typeLabel = UILabel(frame: CGRect(x: 120, y: 20, width: view.frame.width - 120, height: 20))
-        typeLabel.text = selectedBoard?.boardType
+        typeLabel.text = "킥보드 종류 : \(selectedBoard?.boardType ?? "")"
         typeLabel.textAlignment = .left
         view.addSubview(typeLabel)
         
         let priceLabel = UILabel(frame: CGRect(x: 120, y: 50, width: view.frame.width - 120, height: 20))
-        priceLabel.text = "\(selectedBoard?.boardPrice ?? 0)"
+        priceLabel.text = "대여 가격: 분당 \(selectedBoard?.boardPrice ?? 0)₩"
         priceLabel.textAlignment = .left
         view.addSubview(priceLabel)
         
         let isAvailableLabel = UILabel(frame: CGRect(x: 120, y: 80, width: view.frame.width - 120, height: 20))
-        isAvailableLabel.text = "\(selectedBoard?.isAvailable ?? false)"
+        isAvailableLabel.text = "대여 가능 여부: \(selectedBoard?.isAvailable ?? false)"
         isAvailableLabel.textAlignment = .left
         view.addSubview(isAvailableLabel)
         
