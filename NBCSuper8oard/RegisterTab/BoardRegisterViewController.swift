@@ -10,12 +10,10 @@ import NMapsMap
 import CoreLocation
 
 
-class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate
+class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMapViewDelegate, CLLocationManagerDelegate
 {
     var board: [Board] = []
     var index: Int = 0
-    var locationManager: CLLocationManager!
-    var locationMapView: NMFMapView!
     
     var boardType: String = ""
     var boardNumber: Int = 0
@@ -31,6 +29,45 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
     var boardBatteryTextField: UITextField!
     var boardPriceTextField: UITextField!
     var registerButton: UIButton!
+    
+    var locationManager = CLLocationManager()
+    var locationOverlay: NMFLocationOverlay?
+    
+    // 맵 뷰 생성
+    lazy var locationMapView: NMFMapView =
+    {
+        var mapView = NMFMapView()
+        mapView = NMFMapView(frame: CGRect(x: 131, y: 490, width: 235, height: 200))
+        mapView.logoInteractionEnabled = false // 로고 터치 불가능
+        mapView.allowsZooming = true
+        mapView.allowsScrolling = true
+        self.locationOverlay = mapView.locationOverlay
+        
+        return mapView
+    }()
+    
+    // 위치 정보 설정
+    func setLocationData()
+    {
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        let latitude = locationManager.location?.coordinate.latitude ?? 0
+        let longitude = locationManager.location?.coordinate.longitude ?? 0
+        boardLocation = NMGLatLng(lat: latitude, lng: longitude)
+        print(boardLocation)
+        
+        let camereUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 14)
+        locationMapView.moveCamera(camereUpdate)
+        camereUpdate.animation = .easeIn
+        
+        guard let locationOverlay = locationOverlay   else { return }
+        locationOverlay.hidden = false
+        locationOverlay.location = NMGLatLng(lat: latitude, lng: longitude)
+        locationOverlay.icon = NMFOverlayImage(name: "marker_icon")
+    }
     
     
     // 레이블 생성 메서드
@@ -154,6 +191,8 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         
         view.backgroundColor = .white
         
+        setLocationData()
+        
         // Label 목록
         let title = createLabel(text: "킥보드 등록", top: 77, left: 0)
             title.font = UIFont.systemFont(ofSize: 32)
@@ -166,42 +205,36 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         boardTypeTextField?.inputView = boardTypePickerView     //
         creatToolbarExitButton(textFieldName: boardTypeTextField)
         
-        let boardNumberLabel = createLabel(text: "킥보드 번호\n(숫자 6자리)", top: 237, left: 19)        // 킥보드 번호 텍스트 레이블
+        // 킥보드 번호 텍스트 레이블
+        let boardNumberLabel = createLabel(text: "킥보드 번호\n(숫자 6자리)", top: 237, left: 19)
             boardNumberLabel.numberOfLines = 2
         boardNumberTextField = createTextField(placeholder: "킥보드 일련번호를 입력하세요.", top: 243, left: 131)
         boardNumberTextField.keyboardType = .numberPad
         creatToolbarExitButton(textFieldName: boardNumberTextField)
         
         
-        _ = createLabel(text: "배터리 용량", top: 336, left: 24)     // 배터리 용량 텍스트 레이블
+        // 배터리 용량 텍스트 레이블
+        _ = createLabel(text: "배터리 용량", top: 336, left: 24)
             boardBatteryTextField = createTextField(placeholder: "배터리 용량을 입력하세요.", top: 330, left: 131)
         boardBatteryTextField.keyboardType = .numberPad
         creatToolbarExitButton(textFieldName: boardBatteryTextField)
         
         
-        _ = createLabel(text: "가격", top: 413, left: 46)     // 가격 텍스트 레이블
+        // 가격 텍스트 레이블
+        _ = createLabel(text: "가격", top: 413, left: 46)
             boardPriceTextField = createTextField(placeholder: "분 당 가격을 입력하세요.", top: 410, left: 131)
         boardPriceTextField.keyboardType = .numberPad
         creatToolbarExitButton(textFieldName: boardPriceTextField)
         
         
-        _ = createLabel(text: "위치", top: 490, left: 46)     // 위치 텍스트 레이블
+        // 위치 텍스트 레이블
+        _ = createLabel(text: "위치", top: 490, left: 46)
         
-        // 지도 뷰 관리
-        locationMapView = NMFMapView(frame: CGRect(x: 131, y: 490, width: 235, height: 200))
-        locationMapView.positionMode = .disabled // 위치 추적 모드 비활성화
         view.addSubview(locationMapView)
-
-        let target = NMGLatLng(lat: 37.5670135, lng: 126.9783740)
-        let cameraPosition = NMFCameraPosition(target, zoom: 14)
-        locationMapView.moveCamera(NMFCameraUpdate(position: cameraPosition))
         
-        // 위치 관리
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
+        
+        
+
         
         // 등록하기 버튼
         registerButton = UIButton(type: .system)
@@ -228,38 +261,18 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         self.view.endEditing(true)
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) 
-    {
-        guard let location = locations.first
-        else {return}
-        
-        let target = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
-        let cameraPosition = NMFCameraPosition(target, zoom: 14)
-        locationMapView.moveCamera(NMFCameraUpdate(position: cameraPosition))
-        
-        let marker = NMFMarker()
-        marker.position = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
-        marker.mapView = locationMapView
-        
-    }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) 
-    {
-        if status == .authorizedWhenInUse
-        {
-            locationManager.startUpdatingLocation()
-        }
-    }
     
     @objc func buttonPressed()
     {
-        board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: NMGLatLng(lat: 37.5670135, lng: 126.9783740), isAvailable: true))
+        board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: boardLocation, isAvailable: true))
         
         let alert = UIAlertController(title: "등록 완료", message: "킥보드가 등록되었습니다.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: nil))
         present(alert, animated: true, completion: nil)
         
         print("기종 : \(board[index].boardType), 킥보드 번호 : \(board[index].boardNumber), 배터리 : \(board[index].boardBattery)mAh, 가격 : 분 당 \(board[index].boardPrice)원, 위치 : \(board[index].boardLocation), 대여 가능 여부 : \(board[index].isAvailable)")
+        
         index += 1
     }
     
@@ -288,7 +301,3 @@ extension BoardRegisterViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
 }
 
-class LocationManager
-{
-    
-}
