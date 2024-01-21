@@ -24,6 +24,7 @@
 		E079C8742B565C90001B35B5 /* CurrentlyRentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */; };
 		E079C8762B568E2B001B35B5 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E079C8752B568E2B001B35B5 /* MyPage.storyboard */; };
 		E08DF3E62B5D0B4600996F49 /* NaviTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DF3E52B5D0B4600996F49 /* NaviTestViewController.swift */; };
+		E08DF3E92B5D10E400996F49 /* PersonalUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DF3E82B5D10E400996F49 /* PersonalUserCell.swift */; };
 		E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */; };
 		E09CEBE32B5744570028D9B3 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE22B5744570028D9B3 /* MyPageCell.swift */; };
 		E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */; };
@@ -51,6 +52,7 @@
 		E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentlyRentingViewController.swift; sourceTree = "<group>"; };
 		E079C8752B568E2B001B35B5 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		E08DF3E52B5D0B4600996F49 /* NaviTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviTestViewController.swift; sourceTree = "<group>"; };
+		E08DF3E82B5D10E400996F49 /* PersonalUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalUserCell.swift; sourceTree = "<group>"; };
 		E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E09CEBE22B5744570028D9B3 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationViewController.swift; sourceTree = "<group>"; };
@@ -165,11 +167,20 @@
 			path = MapTab;
 			sourceTree = "<group>";
 		};
+		E08DF3E72B5D10C100996F49 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E09CEBE22B5744570028D9B3 /* MyPageCell.swift */,
+				E08DF3E82B5D10E400996F49 /* PersonalUserCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		E09A09022B593DF400ADCB45 /* MyPageTab */ = {
 			isa = PBXGroup;
 			children = (
 				E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */,
-				E09CEBE22B5744570028D9B3 /* MyPageCell.swift */,
+				E08DF3E72B5D10C100996F49 /* TableViewCells */,
 				E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */,
 				E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */,
 				E08DF3E52B5D0B4600996F49 /* NaviTestViewController.swift */,
@@ -309,6 +320,7 @@
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445485C2B57589000C10D76 /* Board.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
+				E08DF3E92B5D10E400996F49 /* PersonalUserCell.swift in Sources */,
 				1445486B2B59595D00C10D76 /* SignInView.swift in Sources */,
 				E08DF3E62B5D0B4600996F49 /* NaviTestViewController.swift in Sources */,
 				1445484F2B56196E00C10D76 /* User.swift in Sources */,
