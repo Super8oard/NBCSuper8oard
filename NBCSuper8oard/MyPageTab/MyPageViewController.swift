@@ -49,17 +49,14 @@ extension MyPageViewController: UITableViewDelegate {
         case "개인정보":
             if let vc = storyboard?.instantiateViewController(withIdentifier: "PersonalInformationViewController") as?
                 PersonalInformationViewController {
+                vc.userData = tabBarVC?.user
                 vc.title = cellDatas[indexPath.row].title
                 navigationController?.pushViewController(vc, animated: true)
             }
         case "내가 등록한 킥보드":
-            if let vc = storyboard?.instantiateViewController(identifier: "PersonalInformationViewController") as? PersonalInformationViewController {
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            return
         case "킥보드 이용 내역":
-            if let vc = storyboard?.instantiateViewController(identifier: "PersonalInformationViewController") as? PersonalInformationViewController {
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            return
         default:
             return
         }

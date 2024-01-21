@@ -8,16 +8,23 @@
 import UIKit
 
 class PersonalUserCell: UITableViewCell {
-
+    @IBOutlet weak var titleLabel: UILabel!
+//    var labelValue: String?
+    var labelValue: String? {
+        didSet {
+            titleLabel.text = labelValue
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+//        titleLabel.text = labelValue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+//        titleLabel.text = labelValue
     }
-
 }

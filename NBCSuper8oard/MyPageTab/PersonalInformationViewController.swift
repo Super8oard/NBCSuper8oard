@@ -21,8 +21,7 @@ class PersonalInformationViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                                            style: .plain, target: self, action: #selector(backButton(_:)))
         
-        footerTitles = ["아이디", "전화번호", "이메일", "생일"]
-        cellTitles = [userData?.id, userData?.phoneNumber, userData?.email, userData?.birthDate]
+        setUpTableView()
     }
 
     @objc
@@ -33,20 +32,39 @@ class PersonalInformationViewController: UIViewController {
 
 extension PersonalInformationViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return footerTitles.count
+        return footerTitles?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return footerTitles.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "personalUserCell") as? PersonalUserCell else { return UITableViewCell() }
-        cell.detailTextLabel?.text = userData?.id
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell") as? PersonalUserCell else { return UITableViewCell() }
+
+        cell.labelValue = cellTitles?[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return footerTitles[section]
+        return footerTitles?[section]
+    }
+}
+
+extension PersonalInformationViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+}
+
+
+//MARK: - Helpers
+extension PersonalInformationViewController {
+    private func setUpTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        footerTitles = ["아이디", "전화번호", "이메일", "생일"]
+        cellTitles = [userData?.id ?? "", userData?.phoneNumber ?? "", userData?.email ?? "", userData?.birthDate ?? ""]
     }
 }
