@@ -159,7 +159,7 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        let newUser = User(id: id, password: password, name: name, phoneNumber: phoneNumber, email: email, birthDate: birthDate)
+        let newUser = User(id: id, password: password, name: name, phoneNumber: phoneNumber, email: email, birthDate: birthDate, isRiding: false)
         usersDictionary[id] = newUser
 
         // Save user to UserDefaults using encoding
