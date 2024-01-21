@@ -18,8 +18,9 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarVC = parent as? TabBarController
+        tabBarVC = parent?.parent as? TabBarController
         
+        userNameLabel.text = tabBarVC?.user?.name
         setUpTableView()
     }
 }
@@ -46,19 +47,16 @@ extension MyPageViewController: UITableViewDelegate {
         
         switch cellDatas[indexPath.row].title {
         case "개인정보":
-            if let vc = storyboard?.instantiateViewController(identifier: "PersonalInformationViewController") as?
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "PersonalInformationViewController") as?
                 PersonalInformationViewController {
+                vc.userData = tabBarVC?.user
                 vc.title = cellDatas[indexPath.row].title
                 navigationController?.pushViewController(vc, animated: true)
             }
         case "내가 등록한 킥보드":
-            if let vc = storyboard?.instantiateViewController(identifier: "PersonalInformationViewController") as? PersonalInformationViewController {
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            return
         case "킥보드 이용 내역":
-            if let vc = storyboard?.instantiateViewController(identifier: "PersonalInformationViewController") as? PersonalInformationViewController {
-                navigationController?.pushViewController(vc, animated: true)
-            }
+            return
         default:
             return
         }
