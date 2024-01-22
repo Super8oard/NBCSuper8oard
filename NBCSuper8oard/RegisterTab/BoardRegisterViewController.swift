@@ -12,7 +12,8 @@ import CoreLocation
 
 class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMapViewDelegate, CLLocationManagerDelegate
 {
-    var board: [Board] = []
+    weak var tabBarVC: TabBarController?
+    
     var index: Int = 0
     
     var boardType: String = ""
@@ -188,7 +189,10 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
     
     override func viewDidLoad()
     {
+        
         super.viewDidLoad()
+        
+        tabBarVC = parent as? TabBarController
         
         view.backgroundColor = .white
         
@@ -261,13 +265,13 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
     
     @objc func buttonPressed()
     {
-        board.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: boardLocation, isAvailable: true))
+        tabBarVC?.boards.append(Board(boardType: boardType, boardNumber: boardNumber, boardBattery: boardBattery, boardPrice: boardPrice, boardLocation: boardLocation, isAvailable: true))
         
         let alert = UIAlertController(title: "등록 완료", message: "킥보드가 등록되었습니다.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: nil))
         present(alert, animated: true, completion: nil)
         
-        print("기종 : \(board[index].boardType), 킥보드 번호 : \(board[index].boardNumber), 배터리 : \(board[index].boardBattery)mAh, 가격 : 분 당 \(board[index].boardPrice)원, 위치 : \(board[index].boardLocation), 대여 가능 여부 : \(board[index].isAvailable)")
+        print("기종 : \(tabBarVC?.boards[index].boardType), 킥보드 번호 : \(tabBarVC?.boards[index].boardNumber), 배터리 : \(tabBarVC?.boards[index].boardBattery)mAh, 가격 : 분 당 \(tabBarVC?.boards[index].boardPrice)원, 위치 : \(tabBarVC?.boards[index].boardLocation), 대여 가능 여부 : \(tabBarVC?.boards[index].isAvailable)")
         
         index += 1
     }
