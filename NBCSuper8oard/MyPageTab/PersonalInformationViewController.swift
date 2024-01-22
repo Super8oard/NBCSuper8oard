@@ -42,7 +42,7 @@ extension PersonalInformationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell") as? PersonalUserCell else { return UITableViewCell() }
 
-        cell.labelValue = cellTitles?[indexPath.row]
+        cell.labelValue = cellTitles?[indexPath.section]
         return cell
     }
     
