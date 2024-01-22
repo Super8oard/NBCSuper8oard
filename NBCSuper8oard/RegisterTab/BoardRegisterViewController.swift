@@ -66,7 +66,9 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         guard let locationOverlay = locationOverlay   else { return }
         locationOverlay.hidden = false
         locationOverlay.location = NMGLatLng(lat: latitude, lng: longitude)
-        locationOverlay.icon = NMFOverlayImage(name: "marker_icon")
+        locationOverlay.icon = NMFOverlayImage(name: "pin_image")
+        locationOverlay.iconWidth = 20
+        locationOverlay.iconHeight = 30
     }
     
     
