@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  memo
+//  NBCSuper8oard
 //
 //  Created by 영현 on 1/21/24.
 //
@@ -10,7 +10,7 @@ import CoreLocation
 import NMapsMap
 
 class MapViewController: UIViewController, UIViewControllerTransitioningDelegate, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
-
+    
     lazy var mapView = NMFNaverMapView(frame: view.frame)
     var locationManager = CLLocationManager()
     weak var tabBarVC: TabBarController?
@@ -18,7 +18,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     var numberOfDummyData = 30
     var user: User?
     var ridingBoardNumber: Int?
-
+    
     lazy var inUseLabel: UILabel = {
         let label = UILabel()
         label.text = "이용 중"
@@ -32,7 +32,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         
         return label
     }()
-
+    
     lazy var returnButton: UIButton = {
         let button = UIButton()
         button.setTitle("반납하기", for: .normal)
@@ -61,12 +61,12 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         let marker = overlay
         var tappedBoard: Board?
         for board in self!.boardList {
-            if marker.userInfo["id"] as! String == String(board.boardNumber) {
+            if marker.userInfo["id"] as? Int == board.boardNumber {
                 tappedBoard = board
             } else { continue }
         }
         let detailVC = DetailViewController(selectedBoard: tappedBoard, user: self?.user)
-
+        
         detailVC.isRented = { [weak self] board in
             for i in 0..<self!.boardList.count {
                 if self?.boardList[i].boardNumber == board.boardNumber {
@@ -125,7 +125,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
             cameraUpdate.animation = .easeIn
         }
     }
-    // make dummy data for test
+    
     func makeDummyData() {
         for i in 0..<numberOfDummyData {
             let tempLoc = generateRandomNMGLatLng()
@@ -134,11 +134,29 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.mapView.touchDelegate = self
         locationManager.delegate = self
+        switch locationManager.authorizationStatus {
+        case .denied:
+            print("위치 비허용")
+        case .notDetermined, .restricted:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            break
+        }
+        
+        switch locationManager.accuracyAuthorization {
+        case .reducedAccuracy:
+            locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "")
+        case .fullAccuracy:
+            break
+        @unknown default:
+            break
+        }
+        
         view.addSubview(mapView)
         setLocationData()
         mapView.showZoomControls = true
@@ -147,45 +165,35 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         mapView.mapView.minZoomLevel = 10
         mapView.mapView.maxZoomLevel = 15
         makeDummyData()
-        tabBarVC = parent as? TabBarController
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         for board in boardList {
             placeBoardOnMap(board: board).mapView = self.mapView.mapView
         }
         mapView.addSubview(inUseLabel)
         mapView.addSubview(returnButton)
         mapView.addSubview(searchButton)
+        tabBarVC = parent as? TabBarController
     }
     
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+//        for board in boardList {
+//            placeBoardOnMap(board: board).mapView = self.mapView.mapView
+//        }
+//        mapView.addSubview(inUseLabel)
+//        mapView.addSubview(returnButton)
+//        mapView.addSubview(searchButton)
+    }
 }
+
     
 
 //MARK: Marker Config Methods
 extension MapViewController {
     private func placeBoardOnMap(board: Board) -> NMFMarker {
-        
-        let markerTapEvent = { [weak self] (overlay: NMFOverlay) -> Bool in
-            guard let marker = overlay as? NMFMarker else { return true }
-            var tappedBoard: Board?
-            for board in self!.boardList {
-                if marker.position == board.boardLocation {
-                    tappedBoard = board
-                } else { return false }
-            }
-            let detailVC = DetailViewController(selectedBoard: tappedBoard)
-            self?.present(detailVC, animated: true, completion: nil)
-            return true
-        }
-
         let marker = NMFMarker(position: board.boardLocation)
-        marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
+        marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 30, height: 30)))
         marker.touchHandler = markerTapEvent
-        marker.maxZoom = 10
-        marker.tag = UInt(board.boardNumber)
+        marker.minZoom = 1
+        marker.userInfo["id"] = board.boardNumber
         return marker
     }
 

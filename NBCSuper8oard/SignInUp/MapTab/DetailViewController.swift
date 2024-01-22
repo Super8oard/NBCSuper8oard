@@ -1,6 +1,6 @@
 //
 //  DetailViewController.swift
-//  memo
+//  NBCSuper8oard
 //
 //  Created by 영현 on 1/21/24.
 //
@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         let boardImage = UIImageView(frame: CGRect(x: 10, y: 20, width: 100, height: 100))
-        boardImage.image = UIImage(named: "BoardPicture")
+        boardImage.image = UIImage(named: "Kickboard")
         view.addSubview(boardImage)
         
         
@@ -72,7 +72,7 @@ class DetailViewController: UIViewController {
         let confirmAlert = UIAlertController(title: "대여", message: "선택한 킥보드로 대여를 진행합니다.", preferredStyle: .alert)
         let rentAction = UIAlertAction(title: "확인", style: .default) { [self] _ in
             guard var temp = selectedBoard else { return }
-//            temp.isAvailable = temp.isAvailable ? false : true
+            temp.isAvailable = temp.isAvailable ? false : true
             isRented?(temp)
             isHidden?(temp)
             hideMarker?(temp.isAvailable)

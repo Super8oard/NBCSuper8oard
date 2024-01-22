@@ -9,6 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
     var user: User?
+    var boards: [Board] = []
     
     var mapTabVC: MapViewController {
         let mapTab = MapViewController()
