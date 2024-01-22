@@ -49,7 +49,6 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
     // 위치 정보 설정
     func setLocationData()
     {
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -231,12 +230,8 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         
         // 위치 텍스트 레이블
         _ = createLabel(text: "위치", top: 490, left: 46)
+        view.addSubview(locationMapView)    // 맵뷰
         
-        view.addSubview(locationMapView)
-        
-        
-        
-
         
         // 등록하기 버튼
         registerButton = UIButton(type: .system)
