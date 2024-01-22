@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받습니다.&quot;</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;사용자의 위치를 받습니다.&quot;</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>&quot;사용자의 위치를 받습니다.&quot;</string>
 	<key>UIApplicationSceneManifest</key>
