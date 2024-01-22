@@ -16,7 +16,6 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     weak var tabBarVC: TabBarController?
     lazy var boardList = [Board]()
     var numberOfDummyData = 30
-    var user: User?
     var ridingBoardNumber: Int?
     
     lazy var inUseLabel: UILabel = {
@@ -65,7 +64,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
                 tappedBoard = board
             } else { continue }
         }
-        let detailVC = DetailViewController(selectedBoard: tappedBoard, user: self?.user)
+        let detailVC = DetailViewController(selectedBoard: tappedBoard, user: self?.tabBarVC?.user)
         
         detailVC.isRented = { [weak self] board in
             for i in 0..<self!.boardList.count {
@@ -76,7 +75,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         detailVC.hideMarker = { [weak self] isAvailable in
             marker.mapView = isAvailable ? self?.mapView.mapView : nil
-            self?.user?.isRiding = !isAvailable
+            self?.tabBarVC?.user?.isRiding = !isAvailable
             self?.inUseLabel.isHidden = isAvailable
             self?.returnButton.isHidden = isAvailable
         }
@@ -90,11 +89,11 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         let returnAlert = UIAlertController(title: "반납하기", message: "반납하시겠습니까?", preferredStyle: .alert)
         let returnAction = UIAlertAction(title: "반납", style: .default) { _ in
             self.inUseLabel.isHidden = true
-            self.user?.isRiding = false
+            self.tabBarVC?.user?.isRiding = false
             if let ridingBoardNumber = self.ridingBoardNumber {
                 let currentLocation = self.setCurrentLocation()
                 let marker = NMFMarker(position: currentLocation)
-                marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 25, height: 25)))
+                marker.iconImage = NMFOverlayImage(image: UIImage(named: "BoardMarkerIcon")!.resized(to: CGSize(width: 30, height: 30)))
                 marker.touchHandler = self.markerTapEvent
                 marker.minZoom = 10
                 marker.userInfo["id"] = String(ridingBoardNumber)
@@ -165,7 +164,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         mapView.mapView.minZoomLevel = 10
         mapView.mapView.maxZoomLevel = 15
         makeDummyData()
-        for board in boardList {
+        for board in self.boardList {
             placeBoardOnMap(board: board).mapView = self.mapView.mapView
         }
         mapView.addSubview(inUseLabel)
@@ -174,14 +173,6 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         tabBarVC = parent as? TabBarController
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        for board in boardList {
-//            placeBoardOnMap(board: board).mapView = self.mapView.mapView
-//        }
-//        mapView.addSubview(inUseLabel)
-//        mapView.addSubview(returnButton)
-//        mapView.addSubview(searchButton)
-    }
 }
 
     
