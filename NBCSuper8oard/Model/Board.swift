@@ -14,11 +14,7 @@ struct Board {
     var boardBattery: Int
     let boardPrice: Int
     var boardLocation: NMGLatLng
-    var isAvailable: Bool {
-        get {
-            boardBattery > 30
-        }
-    }
+    var isAvailable: Bool
     
     init(boardType: String, boardNumber: Int, boardBattery: Int, boardPrice: Int, boardLocation: NMGLatLng, isAvailable: Bool) {
         self.boardType = boardType
@@ -26,5 +22,6 @@ struct Board {
         self.boardBattery = boardBattery
         self.boardPrice = boardPrice
         self.boardLocation = boardLocation
+        self.isAvailable = isAvailable
     }
 }

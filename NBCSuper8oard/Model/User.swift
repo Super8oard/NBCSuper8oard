@@ -15,4 +15,5 @@ struct User: Codable {
     var phoneNumber: String
     var email: String
     var birthDate: String
+    var isRiding: Bool
 }
