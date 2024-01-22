@@ -12,8 +12,7 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
       
     let cellDatas: [MyPageCell.CellData] = [.init(systemImage: "person.crop.square.fill", title: "개인정보"),
-                                            .init(systemImage: "scooter", title: "내가 등록한 킥보드"),
-                                            .init(systemImage: "list.bullet", title: "킥보드 이용 내역")]
+                                            .init(systemImage: "scooter", title: "내가 등록한 킥보드")]
     weak var tabBarVC: TabBarController?
     
     override func viewDidLoad() {
@@ -54,9 +53,12 @@ extension MyPageViewController: UITableViewDelegate {
                 navigationController?.pushViewController(vc, animated: true)
             }
         case "내가 등록한 킥보드":
-            return
-        case "킥보드 이용 내역":
-            return
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "RegisteredViewController") as?
+                RegisteredViewController {
+                vc.title = cellDatas[indexPath.row].title
+                vc.boards = tabBarVC?.boards
+                navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             return
         }

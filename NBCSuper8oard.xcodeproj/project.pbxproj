@@ -30,6 +30,8 @@
 		E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */; };
 		E09CEBE32B5744570028D9B3 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE22B5744570028D9B3 /* MyPageCell.swift */; };
 		E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */; };
+		E0F63B552B5DF7870033F07D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F63B542B5DF7870033F07D /* RegisteredViewController.swift */; };
+		E0F63B572B5DF90F0033F07D /* RegisteredCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F63B562B5DF90F0033F07D /* RegisteredCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E09CEBE22B5744570028D9B3 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationViewController.swift; sourceTree = "<group>"; };
+		E0F63B542B5DF7870033F07D /* RegisteredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
+		E0F63B562B5DF90F0033F07D /* RegisteredCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,7 @@
 			children = (
 				E09CEBE22B5744570028D9B3 /* MyPageCell.swift */,
 				E08DF3E82B5D10E400996F49 /* PersonalUserCell.swift */,
+				E0F63B562B5DF90F0033F07D /* RegisteredCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				E09CEBE02B573C970028D9B3 /* MyPageViewController.swift */,
 				E08DF3E72B5D10C100996F49 /* TableViewCells */,
 				E09CEBE52B5758BD0028D9B3 /* PersonalInformationViewController.swift */,
+				E0F63B542B5DF7870033F07D /* RegisteredViewController.swift */,
 				E079C8732B565C90001B35B5 /* CurrentlyRentingViewController.swift */,
 				E08DF3E52B5D0B4600996F49 /* NaviTestViewController.swift */,
 				E079C8752B568E2B001B35B5 /* MyPage.storyboard */,
@@ -319,10 +325,12 @@
 				E09CEBE12B573C970028D9B3 /* MyPageViewController.swift in Sources */,
 				E09CEBE62B5758BD0028D9B3 /* PersonalInformationViewController.swift in Sources */,
 				E0587E8D2B5D389000822564 /* MapViewController.swift in Sources */,
+				E0F63B552B5DF7870033F07D /* RegisteredViewController.swift in Sources */,
 				BAAC01022B57E26C00DDC9B2 /* UserStore.swift in Sources */,
 				1445483B2B56174E00C10D76 /* AppDelegate.swift in Sources */,
 				1445483D2B56174E00C10D76 /* SceneDelegate.swift in Sources */,
 				E0587E8C2B5D389000822564 /* SearchViewController.swift in Sources */,
+				E0F63B572B5DF90F0033F07D /* RegisteredCell.swift in Sources */,
 				1445484F2B56196E00C10D76 /* User.swift in Sources */,
 				E0587E8E2B5D389000822564 /* DetailViewController.swift in Sources */,
 				144548692B59595500C10D76 /* SignUpViewController.swift in Sources */,
