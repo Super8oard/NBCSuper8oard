@@ -271,7 +271,7 @@ class BoardRegisterViewController: UIViewController, UITextFieldDelegate, NMFMap
         alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: nil))
         present(alert, animated: true, completion: nil)
         
-        print("기종 : \(tabBarVC?.boards[index].boardType), 킥보드 번호 : \(tabBarVC?.boards[index].boardNumber), 배터리 : \(tabBarVC?.boards[index].boardBattery)mAh, 가격 : 분 당 \(tabBarVC?.boards[index].boardPrice)원, 위치 : \(tabBarVC?.boards[index].boardLocation), 대여 가능 여부 : \(tabBarVC?.boards[index].isAvailable)")
+        print("기종 : \((tabBarVC?.boards[index].boardType)!), 킥보드 번호 : \((tabBarVC?.boards[index].boardNumber)!), 배터리 : \((tabBarVC?.boards[index].boardBattery)!)mAh, 가격 : 분 당 \((tabBarVC?.boards[index].boardPrice)!)원, 위치 : \((tabBarVC?.boards[index].boardLocation)!), 대여 가능 여부 : \((tabBarVC?.boards[index].isAvailable)!)")
         
         index += 1
     }
