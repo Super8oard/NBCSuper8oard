@@ -22,7 +22,7 @@ class RegisteredViewController: UIViewController {
 }
 
 extension RegisteredViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int { 
         return boards?.count ?? 1
     }
     
