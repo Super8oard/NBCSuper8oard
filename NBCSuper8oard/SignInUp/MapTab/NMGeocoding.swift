@@ -17,8 +17,8 @@ struct GeoXY: Decodable {
 class NMGeocoding {
     
     static let shared = NMGeocoding()
-    let NAVER_CLIENT_ID = "rl9gufhvrz"
-    let NAVER_CLIENT_SECRET = "RVdBT1JkkSZWCqIuxDqIFHrL0J7gNO6C7Hs7tEL9"
+    let NAVER_CLIENT_ID = "네이버 API 클라이언트 ID"
+    let NAVER_CLIENT_SECRET = "네이버 API 시크릿 값"
     let baseURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode"
     
     func getGeoXY(_ address: String, completion: @escaping (GeoXY?) -> Void) {
